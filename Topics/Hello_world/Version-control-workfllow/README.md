@@ -19,7 +19,9 @@ This description should help the reader understand what the program is, anything
 
 This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![Image of a clown face](./assets/images/2025-08-30.png)
+> 
+
 
 ## Attribution
 

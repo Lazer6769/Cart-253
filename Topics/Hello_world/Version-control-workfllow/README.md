@@ -13,13 +13,13 @@ This description should help the reader understand what the program is, anything
 
 > The controls for this project are moving the mouse. Once you move the mouse, you will be able to control the brightly coloured circle 
 
-> move your brightly coloured circle from the black background towards black square having your trail fade away once it enters and fade back in once it exits 
+> move your brightly coloured circle from the black background towards the black square, having your trail fade away once it enters and fade back in once it exits😱
 
 ## Screenshot(s)
 
 This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
 
-> ![Image of a clown face](./assets/images/2025-08-30.png)
+> ![Image of a clown face](./assets/images/three.png)
 > 
 
 

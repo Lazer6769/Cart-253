@@ -1,33 +1,40 @@
 /**
- * Title of Project
- * Author Name
+ * variables
+ * Jordan
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
  */
 
 "use strict";
+/** 
+let cheeseRed = 255;
+let cheeseGreen = 255;
+let cheeseBlue = 0;
 
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
+let holeShade = 0;
+let holeSize = 120;
+let holeX = 140;
+let holeY = 175;
+
 function setup() {
     createCanvas(640, 480);
 }
 
 
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
+
 function draw() {
-    background(0);
+    background(cheeseRed, cheeseGreen, cheeseBlue);
 
     //draw a circle 
 
     push();
-    fill(255, 255, 0);
+    //mouseX, MouseY
+    //width/2, height/2
+    fill(holeShade);
     noStroke();
-    ellipse(width / 2, height / 2, 100, 100);
+    ellipse(holeX, holeY, holeSize);
     pop();
 
 }
+*/

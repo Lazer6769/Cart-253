@@ -38,3 +38,56 @@ function draw() {
 
 }
 */
+
+// sky
+let sky = {
+    red: 150,
+    green: 180,
+    blue: 250
+};
+//sun
+let sun = {
+    fill: {
+        red: 255,
+        green: 255,
+        blue: 0,
+    },
+    x: 500,
+    y: 70,
+    size: 100
+};
+// self-esteem 
+let selfEsteem = {
+    shade: 0,
+    x: 320,
+    y: 320,
+    size: 20
+};
+
+
+function setup() {
+
+    createCanvas(640, 320);
+}
+
+
+function draw() {
+
+    background(sky.red, sky.green, sky.blue);
+    //sun
+    push();
+    fill(sun.fill.red, sun.fill.green, sun.fill.blue);
+    noStroke();
+    ellipse(sun.x, sun.y, sun.size);
+    pop();
+
+    push();
+    fill(selfEsteem.shade)
+    noStroke();
+    ellipse(selfEsteem.x, selfEsteem.y, selfEsteem.size)
+    pop();
+
+
+
+
+}

@@ -39,6 +39,7 @@ function draw() {
 }
 */
 
+/** 
 // sky
 let sky = {
     red: 150,
@@ -87,7 +88,5 @@ function draw() {
     ellipse(selfEsteem.x, selfEsteem.y, selfEsteem.size)
     pop();
 
-
-
-
 }
+    */

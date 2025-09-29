@@ -1,6 +1,6 @@
-# TITLE OF PROJECT
+# Character color customization
 
-AUTHOR NAME
+Jordan Lobasso
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 

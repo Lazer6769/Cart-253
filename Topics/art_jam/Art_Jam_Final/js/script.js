@@ -1,111 +1,137 @@
-var r;
-var g;
-var b;
+//let position = 0;
 
-var rslider = 0;
-var gslider = 0;
-var bslider = 0;
+var headr, headg, headb;
+//var headg;
+//var headb;
 
-var re;
-var gr;
-var bl;
+var headrslider, headgslider, headbslider = 0;
+//var headgslider = 0;
+//var headbslider = 0;
 
-var reslider = 0;
-var grslider = 0;
-var blslider = 0;
+var irisr, irisg, irisb
+//var irisg;
+//var irisb;
 
-var reb;
-var gre;
-var blu;
+var irisrslider, irisgslider, irisbslider = 0;
+//var irisgslider = 0;
+//var irisbslider = 0;
 
-var rebslider = 0;
-var greslider = 0;
-var bluslider = 0;
+var noser, noseg, noseb;
+//var noseg;
+//var noseb;
 
-var ree;
-var grn;
-var bue;
+var noserslider, nosegslider, nosebslider = 0;
+//var nosegslider = 0;
+//var nosebslider = 0;
 
-var reeslider = 0;
-var grneslider = 0;
-var bueslider = 0;
+var bodyr, bodyg, bodyb;
+//var bodyg;
+//var bodyb;
 
+var bodyrslider, bodygslider, bodybslider = 0;
+//var bodygslider = 0;
+//var bodybslider = 0;
 
+/*
+var rline;
+var gline; 
+var bline;
+
+var rlineslider = 0;
+var glineslider = 0;
+var blineslider = 0;
+*/
 
 
 function setup() {
     createCanvas(400, 400);
-    /* resetSketch();
-     
-     var button = createButton("reset");
-     button.mousePressed(resetSketch)
-     button.position(10,10);
-     */
 
-    rectMode(CENTER);
-    angleMode(DEGREES);
+    let button = createButton('Clear Drawing')
+    button.mousePressed(clear);
+    button.position(10, 10);
 
 
-    rslider = createSlider(0, 255, 0, 5);
-    gslider = createSlider(0, 255, 0, 5);
-    bslider = createSlider(0, 255, 0, 5);
-
-    reslider = createSlider(0, 255, 0, 5);
-    reslider.position(0, 430);
-    grslider = createSlider(0, 255, 0, 5);
-    grslider.position(135, 430);
-    blslider = createSlider(0, 255, 0, 5);
-    blslider.position(265, 430);
-
-    rebslider = createSlider(0, 255, 0, 5);
-    rebslider.position(0, 460);
-    greslider = createSlider(0, 255, 0, 5);
-    greslider.position(135, 460);
-    bluslider = createSlider(0, 255, 0, 5);
-    bluslider.position(265, 460);
-
-    reeslider = createSlider(0, 255, 0, 5);
-    reeslider.position(0, 490);
-    grnslider = createSlider(0, 255, 0, 5);
-    grnslider.position(135, 490);
-    bueslider = createSlider(0, 255, 0, 5);
-    bueslider.position(265, 490);
-
-    //background(255);
+    myPicker = createColorPicker('black');
+    myPicker.position(10, 30);
 
 
 
+    headrslider = createSlider(0, 255, 0, 5);
+    headrslider.position(0, 400);
+    headgslider = createSlider(0, 255, 0, 5);
+    headgslider.position(135, 400);
+    headbslider = createSlider(0, 255, 0, 5);
+    headbslider.position(265, 400);
+
+    irisrslider = createSlider(0, 255, 0, 5);
+    irisrslider.position(0, 430);
+    irisgslider = createSlider(0, 255, 0, 5);
+    irisgslider.position(135, 430);
+    irisbslider = createSlider(0, 255, 0, 5);
+    irisbslider.position(265, 430);
+
+    noserslider = createSlider(0, 255, 0, 5);
+    noserslider.position(0, 460);
+    nosegslider = createSlider(0, 255, 0, 5);
+    nosegslider.position(135, 460);
+    nosebslider = createSlider(0, 255, 0, 5);
+    nosebslider.position(265, 460);
+
+    bodyrslider = createSlider(0, 255, 0, 5);
+    bodyrslider.position(0, 490);
+    bodygslider = createSlider(0, 255, 0, 5);
+    bodygslider.position(135, 490);
+    bodybslider = createSlider(0, 255, 0, 5);
+    bodybslider.position(265, 490);
+
+    /*
+    rlineslider = createSlider(0, 255, 0, 5);
+    rlineslider.position(0,530);
+    glineslider = createSlider(0, 255, 0, 5);
+    glineslider.position(135,530);
+    blineslider = createSlider(0, 255, 0, 5);
+    blineslider.position(265,530);
+    */
+    background(255);
+
+    strokeWeight(10);
 }
 
-
 function draw() {
-    //background(220);
+
     // console.log(mouseX,mouseY);
 
     drawMe();
 
-
-
 }
+
+function mouseDragged() {
+
+    let c = myPicker.color();
+    fill(c);
+    stroke(c);
+    line(pmouseX, pmouseY, mouseX, mouseY);
+}
+
 
 function drawMe() {
     noStroke();
 
     //body
     push();
-    var ree = reeslider.value();
-    var grn = grnslider.value();
-    var bue = bueslider.value();
-    fill(ree, grn, bue);
+    var bodyr = bodyrslider.value();
+    var bodyg = bodygslider.value();
+    var bodyb = bodybslider.value();
+    fill(bodyr, bodyg, bodyb);
     ellipse(210, 380, 300, 200);
     pop();
 
     //head
     push();
-    var r = rslider.value();
-    var g = gslider.value();
-    var b = bslider.value();
-    fill(r, g, b);
+    var headr = headrslider.value();
+    var headg = headgslider.value();
+    var headb = headbslider.value();
+    fill(headr, headg, headb);
     ellipse(210, 240, 200, 250)
     pop();
 
@@ -115,12 +141,13 @@ function drawMe() {
     ellipse(155, 200, 70, 80);
     ellipse(265, 200, 70, 80);
     pop();
+
     // iris 
     push();
-    var re = reslider.value();
-    var gr = grslider.value();
-    var bl = blslider.value();
-    fill(re, gr, bl);
+    var irisr = irisrslider.value();
+    var irisg = irisgslider.value();
+    var irisb = irisbslider.value();
+    fill(irisr, irisg, irisb);
     ellipse(155, 200, 45, 60);
     ellipse(265, 200, 45, 60);
     pop();
@@ -131,14 +158,17 @@ function drawMe() {
     ellipse(155, 200, 25, 30);
     ellipse(265, 200, 25, 30);
     pop();
+
     //nose 
     push();
-    var reb = rebslider.value();
-    var gre = greslider.value();
-    var blu = bluslider.value();
-    fill(reb, gre, blu);
+    var noser = noserslider.value();
+    var noseg = nosegslider.value();
+    var noseb = nosebslider.value();
+    fill(noser, noseg, noseb);
     noStroke();
     triangle(210, 225, 245, 265, 170, 265);
     pop();
+
+
 }
 

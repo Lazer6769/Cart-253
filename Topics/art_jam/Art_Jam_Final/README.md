@@ -15,6 +15,8 @@ Jordan Lobasso
 
 > and you can PICK COLORS
 
+Also, for code I had never used before, I had never used both the color picker and the clear drawing features. First time using those  
+
 ## Screenshot(s)
 
 This screenshot is just showing what you can do with the colors and the drawing function:

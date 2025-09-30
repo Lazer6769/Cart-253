@@ -1,45 +1,13 @@
 
-let headr, headg, headb;
-//var headg;
-//var headb;
+let headR, headG, headB;
+let headRslide, headGslider, headBslider = 0;
+let irisR, irisG, irisB
+let irisRslider, irisGslider, irisBslider = 0;
+let noseR, noseG, noseB;
+let noseRslider, noseGslider, noseBslider = 0;
+let bodyR, bodyG, bodyB;
+let bodyRslider, bodyGslider, bodyBslider = 0;
 
-let headrslider, headgslider, headbslider = 0;
-//var headgslider = 0;
-//var headbslider = 0;
-
-let irisr, irisg, irisb
-//var irisg;
-//var irisb;
-
-let irisrslider, irisgslider, irisbslider = 0;
-//var irisgslider = 0;
-//var irisbslider = 0;
-
-let noser, noseg, noseb;
-//var noseg;
-//var noseb;
-
-let noserslider, nosegslider, nosebslider = 0;
-//var nosegslider = 0;
-//var nosebslider = 0;
-
-let bodyr, bodyg, bodyb;
-//var bodyg;
-//var bodyb;
-
-let bodyrslider, bodygslider, bodybslider = 0;
-//var bodygslider = 0;
-//var bodybslider = 0;
-
-/*
-var rline;
-var gline; 
-var bline;
-
-var rlineslider = 0;
-var glineslider = 0;
-var blineslider = 0;
-*/
 
 
 function setup() {
@@ -55,33 +23,33 @@ function setup() {
     // multiple sliders that can change the color
     // for the different body parts 
 
-    headrslider = createSlider(0, 255, 0, 5);
-    headrslider.position(0, 400);
-    headgslider = createSlider(0, 255, 0, 5);
-    headgslider.position(135, 400);
-    headbslider = createSlider(0, 255, 0, 5);
-    headbslider.position(265, 400);
+    headRslider = createSlider(0, 255, 0, 5);
+    headRslider.position(0, 400);
+    headGslider = createSlider(0, 255, 0, 5);
+    headGslider.position(135, 400);
+    headBslider = createSlider(0, 255, 0, 5);
+    headBslider.position(265, 400);
 
-    irisrslider = createSlider(0, 255, 0, 5);
-    irisrslider.position(0, 430);
-    irisgslider = createSlider(0, 255, 0, 5);
-    irisgslider.position(135, 430);
-    irisbslider = createSlider(0, 255, 0, 5);
-    irisbslider.position(265, 430);
+    irisRslider = createSlider(0, 255, 0, 5);
+    irisRslider.position(0, 430);
+    irisGslider = createSlider(0, 255, 0, 5);
+    irisGslider.position(135, 430);
+    irisBslider = createSlider(0, 255, 0, 5);
+    irisBslider.position(265, 430);
 
-    noserslider = createSlider(0, 255, 0, 5);
-    noserslider.position(0, 460);
-    nosegslider = createSlider(0, 255, 0, 5);
-    nosegslider.position(135, 460);
-    nosebslider = createSlider(0, 255, 0, 5);
-    nosebslider.position(265, 460);
+    noseRslider = createSlider(0, 255, 0, 5);
+    noseRslider.position(0, 460);
+    noseGslider = createSlider(0, 255, 0, 5);
+    noseGslider.position(135, 460);
+    noseBslider = createSlider(0, 255, 0, 5);
+    noseBslider.position(265, 460);
 
-    bodyrslider = createSlider(0, 255, 0, 5);
-    bodyrslider.position(0, 490);
-    bodygslider = createSlider(0, 255, 0, 5);
-    bodygslider.position(135, 490);
-    bodybslider = createSlider(0, 255, 0, 5);
-    bodybslider.position(265, 490);
+    bodyRslider = createSlider(0, 255, 0, 5);
+    bodyRslider.position(0, 490);
+    bodyGslider = createSlider(0, 255, 0, 5);
+    bodyGslider.position(135, 490);
+    bodyBslider = createSlider(0, 255, 0, 5);
+    bodyBslider.position(265, 490);
 
     background(255);
 
@@ -113,19 +81,19 @@ function drawMe() {
 
     //body
     push();
-    let bodyr = bodyrslider.value();
-    let bodyg = bodygslider.value();
-    let bodyb = bodybslider.value();
-    fill(bodyr, bodyg, bodyb);
+    let bodyR = bodyRslider.value();
+    let bodyG = bodyGslider.value();
+    let bodyB = bodyBslider.value();
+    fill(bodyR, bodyG, bodyB);
     ellipse(210, 380, 300, 200);
     pop();
 
     //head
     push();
-    let headr = headrslider.value();
-    let headg = headgslider.value();
-    let headb = headbslider.value();
-    fill(headr, headg, headb);
+    let headR = headRslider.value();
+    let headG = headGslider.value();
+    let headB = headBslider.value();
+    fill(headR, headG, headB);
     ellipse(210, 240, 200, 250)
     pop();
 
@@ -138,10 +106,10 @@ function drawMe() {
 
     // iris 
     push();
-    let irisr = irisrslider.value();
-    let irisg = irisgslider.value();
-    let irisb = irisbslider.value();
-    fill(irisr, irisg, irisb);
+    let irisR = irisRslider.value();
+    let irisG = irisGslider.value();
+    let irisB = irisBslider.value();
+    fill(irisR, irisG, irisB);
     ellipse(155, 200, 45, 60);
     ellipse(265, 200, 45, 60);
     pop();
@@ -155,10 +123,10 @@ function drawMe() {
 
     //nose 
     push();
-    let noser = noserslider.value();
-    let noseg = nosegslider.value();
-    let noseb = nosebslider.value();
-    fill(noser, noseg, noseb);
+    let noseR = noseRslider.value();
+    let noseG = noseGslider.value();
+    let noseB = noseBslider.value();
+    fill(noseR, noseG, noseB);
     noStroke();
     triangle(210, 225, 245, 265, 170, 265);
     pop();

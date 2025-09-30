@@ -8,24 +8,31 @@ Jordan Lobasso
 
 > This program allows you to change the colors of the character you, 
 
-> you can change the skin, irises, nose, and body color of the subject 
+> you can change the skin, irises, nose, and body color of the subject with the sliders
 
 > as well as having the ability to draw anywhere on the screen except for on the character itself
 > and you can even clear the drawings to restart it 
 
+> and you can PICK COLORS
+
 ## Screenshot(s)
 
-This bit should have some images of the program running so that the reader has a sense of what it looks like. For example:
+This screenshot is just showing what you can do with the colors and the drawing function:
 
-> ![Image of a clown face](./assets/images/clown.png)
+> ![Image of a clown face](./assets/images/2025-09-30.png)
 
 ## Attribution
 
 This bit should attribute any code, assets or other elements used taken from other sources. For example:
 
 > - This project uses [p5.js](https://p5js.org).
-> - The clown image is a capture of the clown from the Apple emoji character set.
-> - The barking sound effect is "single dog bark 1" by crazymonke9 from freesound.org: https://freesound.org/people/crazymonke9/sounds/418107/
+> - color picker [p5.js(https://p5js.org/reference/p5/createColorPicker/)
+> - sliders with color [p5.js](https://editor.p5js.org/yellowsubmarine/sketches/7jKeK8CGW)
+> - clear button https://p5js.org/reference/p5/clear/
+> - the ability to draw [p5.js]
+    (https://p5js.org/examplesanimation-and-variables-drawing-lines/)
+
+]
 
 ## License
 

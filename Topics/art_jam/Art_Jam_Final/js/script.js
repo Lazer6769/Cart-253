@@ -1,34 +1,33 @@
-//let position = 0;
 
-var headr, headg, headb;
+let headr, headg, headb;
 //var headg;
 //var headb;
 
-var headrslider, headgslider, headbslider = 0;
+let headrslider, headgslider, headbslider = 0;
 //var headgslider = 0;
 //var headbslider = 0;
 
-var irisr, irisg, irisb
+let irisr, irisg, irisb
 //var irisg;
 //var irisb;
 
-var irisrslider, irisgslider, irisbslider = 0;
+let irisrslider, irisgslider, irisbslider = 0;
 //var irisgslider = 0;
 //var irisbslider = 0;
 
-var noser, noseg, noseb;
+let noser, noseg, noseb;
 //var noseg;
 //var noseb;
 
-var noserslider, nosegslider, nosebslider = 0;
+let noserslider, nosegslider, nosebslider = 0;
 //var nosegslider = 0;
 //var nosebslider = 0;
 
-var bodyr, bodyg, bodyb;
+let bodyr, bodyg, bodyb;
 //var bodyg;
 //var bodyb;
 
-var bodyrslider, bodygslider, bodybslider = 0;
+let bodyrslider, bodygslider, bodybslider = 0;
 //var bodygslider = 0;
 //var bodybslider = 0;
 
@@ -119,18 +118,18 @@ function drawMe() {
 
     //body
     push();
-    var bodyr = bodyrslider.value();
-    var bodyg = bodygslider.value();
-    var bodyb = bodybslider.value();
+    let bodyr = bodyrslider.value();
+    let bodyg = bodygslider.value();
+    let bodyb = bodybslider.value();
     fill(bodyr, bodyg, bodyb);
     ellipse(210, 380, 300, 200);
     pop();
 
     //head
     push();
-    var headr = headrslider.value();
-    var headg = headgslider.value();
-    var headb = headbslider.value();
+    let headr = headrslider.value();
+    let headg = headgslider.value();
+    let headb = headbslider.value();
     fill(headr, headg, headb);
     ellipse(210, 240, 200, 250)
     pop();
@@ -144,9 +143,9 @@ function drawMe() {
 
     // iris 
     push();
-    var irisr = irisrslider.value();
-    var irisg = irisgslider.value();
-    var irisb = irisbslider.value();
+    let irisr = irisrslider.value();
+    let irisg = irisgslider.value();
+    let irisb = irisbslider.value();
     fill(irisr, irisg, irisb);
     ellipse(155, 200, 45, 60);
     ellipse(265, 200, 45, 60);
@@ -161,9 +160,9 @@ function drawMe() {
 
     //nose 
     push();
-    var noser = noserslider.value();
-    var noseg = nosegslider.value();
-    var noseb = nosebslider.value();
+    let noser = noserslider.value();
+    let noseg = nosegslider.value();
+    let noseb = nosebslider.value();
     fill(noser, noseg, noseb);
     noStroke();
     triangle(210, 225, 245, 265, 170, 265);

@@ -2,7 +2,7 @@
 
 Jordan Lobasso
 
-[View this project online](URL_FOR_THE_RUNNING_PROJECT)
+[View this project online](https://lazer6769.github.io/Cart-253/Topics/art_jam/Art_Jam_Final/)
 
 ## Description
 

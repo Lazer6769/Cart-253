@@ -44,16 +44,16 @@ var blineslider = 0;
 
 function setup() {
     createCanvas(400, 400);
-
+    //creates a "Clear Drawing" button that Clears all drawings that you drew 
     let button = createButton('Clear Drawing')
     button.mousePressed(clear);
     button.position(10, 10);
-
-
+    //instead of a slider this allows you to choose a color for your pen 
     myPicker = createColorPicker('black');
     myPicker.position(10, 30);
 
-
+    // multiple sliders that can change the color
+    // for the different body parts 
 
     headrslider = createSlider(0, 255, 0, 5);
     headrslider.position(0, 400);
@@ -83,14 +83,6 @@ function setup() {
     bodybslider = createSlider(0, 255, 0, 5);
     bodybslider.position(265, 490);
 
-    /*
-    rlineslider = createSlider(0, 255, 0, 5);
-    rlineslider.position(0,530);
-    glineslider = createSlider(0, 255, 0, 5);
-    glineslider.position(135,530);
-    blineslider = createSlider(0, 255, 0, 5);
-    blineslider.position(265,530);
-    */
     background(255);
 
     strokeWeight(10);
@@ -99,13 +91,13 @@ function setup() {
 function draw() {
 
     // console.log(mouseX,mouseY);
-
+    // drawMe isolates the body parts to function drawME
     drawMe();
 
 }
 
 function mouseDragged() {
-
+    // the ability to draw
     let c = myPicker.color();
     fill(c);
     stroke(c);
@@ -115,6 +107,9 @@ function mouseDragged() {
 
 function drawMe() {
     noStroke();
+    // slider.value is the color values so the slider 
+    // can change color
+
 
     //body
     push();

@@ -1,22 +1,22 @@
 20 Frog ideas 
 
-1. Avoid the flies getting near your tongue, as they might kill you 
-2. Frog changes colour over time 
-3. There are multiple flies 
-4. The frog is now evil 
-5. The flies can change pace (speed) 
-6. The flies move in weird ways 
-7. There are different flies to eat 
+1. Avoid the flies getting near your tongue, as they might kill you (avoid touching the flies with your tongue or else they will kill you)
+2. Frog changes colour over time (the frog will change its color from green, to various different colours the more the program continues to run.)
+3. There are multiple flies (there are more flies to eat)
+4. The frog is now evil (the frog becomes evil by having sinister black and red eyes and he continues to eat the flies)
+5. The flies can change pace (the flies all have different speeds) 
+6. The flies move in weird ways (the flies move in weird ways making it harder for the frog  to eat them)
+7. There are different flies to eat (this can be from the size of the fly, and their shaped, what they can do, and what happens when the frog eats it) 
 8. The flies are different objects (it can be something other than a fly)
 9. The frog is different (it can be something other than a frog) 
-10. The frog is in heaven 
-11. The frog is in purgatory 
-12. The frog is in hell 
-13. The background changes images to give the frog somewhere else to be 
-14. The frog is a pet 
-15. You can be the fly avoiding the frog 
-16. Day and night, more flies cycle in the day than in the night, as well as frogs awake and sleeping  
-17. Frog is used as a hallucinogenic drug 
-18. The frog does nothing and croaks 
-19. There are multiple frogs 
-20. One big bad fly boss 
+10. The frog is in heaven (the frog is in heaven eating angel flies)
+11. The frog is in purgatory the frog is in purgatory eating purgatory flies
+12. The frog is in hell (the frog is in hell eating hellish flies)
+13. The background changes images to give the frog somewhere else to be the (the background may change image or colour the longer the program runs)
+14. The frog is a pet (your a pet frog being fed by your owner)
+15. You can be the fly avoiding the frog (you are the fly avoiding the frog)
+16. Day and night, more flies cycle in the day than in the night, as well as frogs awake and sleeping (there is a day and night cycle, changing the spawn rate of the flies) 
+17. Frog is used as a hallucinogenic drug (you are someone who just licked a frog for their hallucinogenic slime and now you are hallucinating)
+18. The frog does nothing and croaks (the frog dies)
+19. There are multiple frogs (more than 1 frog)
+20. One big bad fly boss (you are fighting the evil fly boss)

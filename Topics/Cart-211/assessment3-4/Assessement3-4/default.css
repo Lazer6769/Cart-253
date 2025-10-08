@@ -155,11 +155,11 @@ table img {
         border-bottom: 4px solid #000;
         background: #000;
         z-index: 1000;
-        color: white;
+        color: darkgreen;
     }
 
     nav a {
-        color: white;
+        color: darkseagreen;
     }
 
     h1 {

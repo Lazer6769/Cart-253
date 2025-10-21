@@ -51,7 +51,9 @@ const frog = {
     tongue: {
         x: undefined,
         y: 480,
-        size: 20,
+        tipx: undefined,
+        tipy: 480,
+        size: 30,
         speed: 20,
         // Determines how the tongue moves each frame
         state: "idle" // State can be: idle, outbound, inbound
@@ -64,7 +66,8 @@ const fly = {
     x: 0,
     y: 200, // Will be random
     size: 10,
-    speed: 3
+    speedx: 3,
+    speedy: 0
 };
 
 const irregularfly = {
@@ -95,14 +98,23 @@ const sounds = {
 
 function preload() {
 
-    sounds.scream = loadSound("assets/sounds/scream.mp3");
-    sounds.otherscream = loadSound("assets/sounds/luigi-burning.mp3");
-    sounds.anotherscream = loadSound("assets/sounds/hl1scream.mp3");
+
+    sounds.scarymusic = loadSound("assets/sounds/17. Haunted Fortress.mp3")
+    sounds.scarymusic.setVolume(0.5);
     sounds.buzzing = loadSound("assets/sounds/mosquito.mp3");
     sounds.beebuzzing = loadSound("assets/sounds/beebuzzing.mp3");
+
+    sounds.scream = loadSound("assets/sounds/scream.mp3");
+    sounds.scream.setVolume(2)
+    sounds.otherscream = loadSound("assets/sounds/luigi-burning.mp3");
+    sounds.anotherscream = loadSound("assets/sounds/hl1scream.mp3");
+
+
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
+    sounds.slurp.setVolume(6)
     sounds.gulp = loadSound("assets/sounds/gulp-with-bubble.mp3");
-    sounds.scarymusic = loadSound("assets/sounds/17. Haunted Fortress.mp3")
+
+
 }
 
 
@@ -123,7 +135,9 @@ function setup() {
 }
 
 function draw() {
-    /*
+
+    // Only run the main game update/draw when we're in the game state.
+    if (whatscreen === "game") {
         background("#662222ff");
         moveFly();
         drawFly();
@@ -137,38 +151,46 @@ function draw() {
         checkTongueFlyOverlap();
         checkTongueirregularflyOverlap();
         checkTongueslowflyOverlap();
-    */
-
-    if (whatscreen === "start") {
-        startScreen()
-    } else if (whatscreen === "maingame") {
-        mainGame()
     } else {
-        endScreen()
+        // If not in game, show the appropriate screen overlay.
+        if (whatscreen === "start") {
+            startScreen();
+        } else if (whatscreen === "instructions") {
+            instructionsScreen();
+        } else {
+            endScreen();
+        }
     }
 }
 
-/*
-if (whatscreen === "start") {
-    startScreen()
-} else if (whatscreen === "maingame") {
-    mainGame()
-} else {
-    endScreen()
-}
-*/
+
+
 function startScreen() {
     background("#f47becff");
-
+    //startscreen allowing you to press the key before starting the game 
     textSize(20);
-    text("Press with a key to start", 50, 200)
-
-    if (keyIsPressed) {
-        whatscreen = "maingame"
-    }
+    text("Press with a key to start", 205, 400)
+    textSize(50);
+    text(BOLD)
+    text("Fly Demise", 200, 200)
 }
 
-function mainGame() {
+
+function instructionsScreen() {
+    background("#f47becff");
+    //startscreen allowing you to press the key before starting the game 
+    textSize(20);
+    text("Press with a key to start", 205, 400)
+    textSize(50);
+    text(BOLD)
+    text("instructions", 200, 200)
+    text(30)
+    text("use mouse to eat the flies and something")
+
+}
+
+
+/*function mainGame() {
     background("#662222ff");
     moveFly();
     drawFly();
@@ -182,7 +204,7 @@ function mainGame() {
     checkTongueFlyOverlap();
     checkTongueirregularflyOverlap();
     checkTongueslowflyOverlap();
-}
+}*/
 
 /**
  * Moves the fly according to its speed
@@ -190,9 +212,17 @@ function mainGame() {
  */
 function moveFly() {
     // Move the fly
-    fly.x += fly.speed;
+
+    fly.x += fly.speedx;
+    fly.speedx = random(-5, 25);
+    fly.x = constrain(fly.x, 0, width);
+    fly.speedy = random(-20, 10);
+    fly.y = constrain(fly.y, 100, 200);
+    fly.y += fly.speedy;
+
+    console.log(fly.y);
     // Handle the fly going off the canvas
-    if (fly.x > width) {
+    if (fly.x >= width) {
         resetFly();
     }
 }
@@ -225,6 +255,7 @@ function drawFly() {
     fill("#000000");
     ellipse(fly.x, fly.y, fly.size);
     pop();
+    console.log(fly.x, fly.y, fly.speedx, fly.speady);
 }
 
 function drawirregularfly() {
@@ -265,8 +296,18 @@ function resetslowfly() {
  * Moves the frog to the mouse position on x
  */
 function moveFrog() {
-    frog.body.x
+    /*
+      frog.body.x = mouseX
+      const eyeOffsetX = 40;
+      const pupilOffsetX = 40;
+      frog.Eye1.x = frog.body.x - eyeOffsetX;
+      frog.Eye2.x = frog.body.x + eyeOffsetX;
+      frog.Pupil1.x = frog.body.x - pupilOffsetX;
+      frog.Pupil2.x = frog.body.x + pupilOffsetX;
+      */
+    frog.tongue.tipx = mouseX
 }
+
 
 /**
  * Handles moving the tongue based on its state
@@ -280,17 +321,17 @@ function moveTongue() {
     }
     // If the tongue is outbound, it moves up
     else if (frog.tongue.state === "outbound") {
-        frog.tongue.y += -frog.tongue.speed;
+        frog.tongue.tipy += -frog.tongue.speed;
         // The tongue bounces back if it hits the top
-        if (frog.tongue.y <= 0) {
+        if (frog.tongue.tipy <= 0) {
             frog.tongue.state = "inbound";
         }
     }
     // If the tongue is inbound, it moves down
     else if (frog.tongue.state === "inbound") {
-        frog.tongue.y += frog.tongue.speed;
+        frog.tongue.tipy += frog.tongue.speed;
         // The tongue stops if it hits the bottom
-        if (frog.tongue.y >= height) {
+        if (frog.tongue.tipy >= height) {
             frog.tongue.state = "idle";
         }
     }
@@ -302,7 +343,7 @@ function moveTongue() {
 function drawFrog() {
     // Draw the tongue tip
     push();
-    fill("#b869a0ff");
+    fill("#000000ff");
     noStroke();
     ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
     pop();
@@ -311,8 +352,9 @@ function drawFrog() {
     push();
     stroke("#b869a0ff");
     strokeWeight(frog.tongue.size);
-    line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
+    line(frog.tongue.tipx, frog.tongue.tipy, frog.tongue.x, frog.tongue.y);
     pop();
+
 
     // Draw the frog's body
     push();
@@ -321,25 +363,25 @@ function drawFrog() {
     ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
 
-    //frog eyes 
+    //frog eye 
     push();
     fill("#000000")
     noStroke();
     ellipse(frog.Eye1.x, frog.Eye1.y, frog.Eye1.size);
     pop();
-
+    //frog eye
     push();
     fill("#000000")
     noStroke();
     ellipse(frog.Eye2.x, frog.Eye2.y, frog.Eye2.size);
     pop();
-
+    //frog pupil
     push();
     fill("#ff0000ff")
     noStroke();
     ellipse(frog.Pupil1.x, frog.Pupil1.y, frog.Pupil1.size);
     pop();
-
+    //frog pupil
     push();
     fill("#ff0000ff")
     noStroke();
@@ -352,7 +394,11 @@ function drawFrog() {
  */
 function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+    const d = dist(frog.tongue.tipx, frog.tongue.tipy, fly.x, fly.y);
+    const close = (d < 50);
+    if (close) {
+        fly.y += 50
+    }
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
     if (eaten) {
@@ -367,7 +413,7 @@ function checkTongueFlyOverlap() {
 
 function checkTongueirregularflyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, irregularfly.x, irregularfly.y);
+    const d = dist(frog.tongue.tipx, frog.tongue.tipy, irregularfly.x, irregularfly.y);
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + irregularfly.size / 2);
     if (eaten) {
@@ -382,7 +428,7 @@ function checkTongueirregularflyOverlap() {
 
 function checkTongueslowflyOverlap() {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.x, frog.tongue.y, slowfly.x, slowfly.y);
+    const d = dist(frog.tongue.tipx, frog.tongue.tipy, slowfly.x, slowfly.y);
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + slowfly.size / 2);
     if (eaten) {
@@ -403,4 +449,27 @@ function mousePressed() {
         frog.tongue.state = "outbound";
         sounds.slurp.play();
     }
+}
+function mousePressed() {
+    if (frog.tongue.state === "idle") {
+        frog.tongue.state = "outbound";
+        sounds.slurp.play();
+    }
+}
+
+function keyPressed() {
+    // p5 calls keyPressed() when any key is pressed in global mode.
+    if (whatscreen === "start") {
+        whatscreen = "instructions";
+    } else if (whatscreen === "instructions") {
+        whatscreen = "game";
+    } else if (whatscreen === "game") {
+        // no-op for now
+    }
+
+}
+
+function endScreen() {
+    // Minimal placeholder so draw() can call endScreen() without error.
+    // When you want a real end screen, draw overlay text here.
 }

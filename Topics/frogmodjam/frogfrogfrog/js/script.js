@@ -14,6 +14,8 @@
  */
 
 "use strict";
+let whatscreen = "start"
+
 
 // Our frog
 const frog = {
@@ -121,6 +123,52 @@ function setup() {
 }
 
 function draw() {
+    /*
+        background("#662222ff");
+        moveFly();
+        drawFly();
+        moveirregularfly();
+        drawirregularfly();
+        moveslowfly();
+        drawslowfly();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkTongueFlyOverlap();
+        checkTongueirregularflyOverlap();
+        checkTongueslowflyOverlap();
+    */
+
+    if (whatscreen === "start") {
+        startScreen()
+    } else if (whatscreen === "maingame") {
+        mainGame()
+    } else {
+        endScreen()
+    }
+}
+
+/*
+if (whatscreen === "start") {
+    startScreen()
+} else if (whatscreen === "maingame") {
+    mainGame()
+} else {
+    endScreen()
+}
+*/
+function startScreen() {
+    background("#f47becff");
+
+    textSize(20);
+    text("Press with a key to start", 50, 200)
+
+    if (keyIsPressed) {
+        whatscreen = "maingame"
+    }
+}
+
+function mainGame() {
     background("#662222ff");
     moveFly();
     drawFly();

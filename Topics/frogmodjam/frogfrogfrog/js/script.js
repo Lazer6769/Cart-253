@@ -15,11 +15,19 @@
 
 "use strict";
 let whatscreen = "start"
+// Game timer (seconds)
+const GAME_DURATION = 20; // default 60 seconds
+let timerRemaining = GAME_DURATION;
+let timerActive = false;
 
 let score = 0;
 let scoree = 0;
 let scoreee = 0;
 
+// Frog color interpolation: start (green) -> end (grey)
+let frogColorStart;
+let frogColorGrey;
+let frogCurrentColor;
 
 // Our frog
 const frog = {
@@ -126,7 +134,8 @@ function preload() {
 
 }
 
-//let gameTime = 10 * 6000
+//let gameTime = 10 * 2000;
+
 
 //let gameover = false;
 
@@ -138,8 +147,14 @@ function preload() {
 function setup() {
     createCanvas(640, 480);
 
+    // Start (green) and end (grey) colors for the frog
+    frogColorStart = color("#09ff00ff");
+    frogColorGrey = color("#909090ff");
+    frogCurrentColor = frogColorStart;
+
     // Give the fly its first random position
     resetFly();
+    //resetgameTime();
 
     sounds.buzzing.loop();
     sounds.beebuzzing.loop();
@@ -166,6 +181,36 @@ function draw() {
         drawScore();
         drawScoree();
         drawScoreee();
+
+        // Update timer (deltaTime is milliseconds since last frame)
+        if (timerActive) {
+            timerRemaining -= deltaTime / 1000.0;
+            if (timerRemaining < 0) {
+                timerRemaining = 0;
+            }
+        }
+
+        // Calculate progress from 0.0 (start) -> 1.0 (end)
+        const progress = constrain((GAME_DURATION - timerRemaining) / GAME_DURATION, 0, 1);
+
+        // Interpolate frog color from green -> grey based on progress
+        if (frogColorStart && frogColorGrey) {
+            frogCurrentColor = lerpColor(frogColorStart, frogColorGrey, progress);
+        }
+
+        // If frog is fully grey (progress reached 1) end the game
+        if (progress >= 1) {
+            timerActive = false;
+            whatscreen = "end";
+        }
+
+        // Display timer at top-left
+        push();
+        textSize(20);
+        fill(255);
+        textAlign(LEFT, TOP);
+        text("Time: " + Math.ceil(timerRemaining), 10, 10);
+        pop();
 
     } else {
         // If not in game, show the appropriate screen overlay.
@@ -196,7 +241,7 @@ function instructionsScreen() {
     background("#f47becff");
     //startscreen allowing you to press the key before starting the game 
     textSize(20);
-    text("Press with a key to start", 205, 400)
+    text("Press with a key to start", 200, 400)
     text(10)
     text("use mouse to eat the flies and something", 100, 250)
     textSize(50);
@@ -266,7 +311,7 @@ function moveFly() {
     fly.y = constrain(fly.y, 50, 150);
     fly.y += fly.speedy;
 
-    console.log(fly.y);
+    //console.log(fly.y);
     // Handle the fly going off the canvas
     if (fly.x >= width) {
         resetFly();
@@ -282,7 +327,7 @@ function moveirregularfly() {
     irregularfly.y = constrain(irregularfly.y, 100, 200);
     irregularfly.y += irregularfly.irspeedy;
 
-    console.log(irregularfly.y);
+    //console.log(irregularfly.y);
     // Handle the fly going off the canvas
     if (irregularfly.x >= width) {
         resetirregularfly();
@@ -299,7 +344,7 @@ function moveslowfly() {
     slowfly.y = constrain(slowfly.y, 150, 250);
     slowfly.y += slowfly.slspeedy;
 
-    console.log(slowfly.y);
+    //console.log(slowfly.y);
 
     // Handle the fly going off the canvas
     if (slowfly.x >= width) {
@@ -401,6 +446,8 @@ function moveTongue() {
 /**
  * Displays the tongue (tip and line connection) and the frog (body)
  */
+
+
 function drawFrog() {
     // Draw the tongue tip
     push();
@@ -417,9 +464,9 @@ function drawFrog() {
     pop();
 
 
-    // Draw the frog's body
+    // Draw the frog's body using the interpolated current color
     push();
-    fill("#09ff00ff");
+    fill(frogCurrentColor);
     noStroke();
     ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
@@ -465,8 +512,12 @@ function checkTongueFlyOverlap() {
     if (eaten) {
         sounds.gulp.play();
         sounds.scream.play();
+        score++;
         // Reset the fly
         resetFly();
+        // Reset the game timer when a fly is eaten
+        timerRemaining = GAME_DURATION;
+        timerActive = true;
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
@@ -484,8 +535,12 @@ function checkTongueirregularflyOverlap() {
     if (eaten) {
         sounds.gulp.play();
         sounds.anotherscream.play();
+        scoree++;
         // Reset the fly
         resetirregularfly();
+        // Reset the game timer when a fly is eaten
+        timerRemaining = GAME_DURATION;
+        timerActive = true;
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
@@ -503,8 +558,12 @@ function checkTongueslowflyOverlap() {
     if (eaten) {
         sounds.gulp.play();
         sounds.otherscream.play();
+        scoreee++;
         // Reset the fly
         resetslowfly();
+        // Reset the game timer when a fly is eaten
+        timerRemaining = GAME_DURATION;
+        timerActive = true;
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
@@ -532,13 +591,40 @@ function keyPressed() {
         whatscreen = "instructions";
     } else if (whatscreen === "instructions") {
         whatscreen = "game";
+        // Start/restart the game timer
+        timerRemaining = GAME_DURATION;
+        timerActive = true;
     } else if (whatscreen === "game") {
         // no-op for now
+    }
+    else if (whatscreen === "end") {
+        // Restart: go back to start screen and reset game state
+        whatscreen = "start";
+        timerRemaining = GAME_DURATION;
+        timerActive = false;
+        // reset flies/scores if you want a fresh start
+        resetFly();
+        resetirregularfly();
+        resetslowfly();
+        score = 0;
+        scoree = 0;
+        scoreee = 0;
     }
 
 }
 
 function endScreen() {
-    // Minimal placeholder so draw() can call endScreen() without error.
-    // When you want a real end screen, draw overlay text here.
+    // Simple end screen showing final scores and restart prompt.
+    background(0, 0, 0, 180);
+    push();
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(48);
+    text("Game Over", width / 2, height / 2 - 50);
+    textSize(24);
+    let combined = "Scores: " + score + " / " + scoree + " / " + scoreee;
+    text(combined, width / 2, height / 2);
+    textSize(18);
+    text("Press any key to restart", width / 2, height / 2 + 50);
+    pop();
 }

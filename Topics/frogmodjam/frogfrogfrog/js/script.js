@@ -16,6 +16,10 @@
 "use strict";
 let whatscreen = "start"
 
+let score = 0;
+let scoree = 0;
+let scoreee = 0;
+
 
 // Our frog
 const frog = {
@@ -74,14 +78,16 @@ const irregularfly = {
     x: 0,
     y: 150,
     size: 10,
-    speed: 10
+    irspeedx: 2,
+    irspeedy: 0
 };
 
 const slowfly = {
     x: 0,
     y: 100,
     size: 10,
-    speed: 0.5
+    slspeedx: 1,
+    slspeedy: 0
 }
 
 const sounds = {
@@ -102,21 +108,27 @@ function preload() {
     sounds.scarymusic = loadSound("assets/sounds/17. Haunted Fortress.mp3")
     sounds.scarymusic.setVolume(0.5);
     sounds.buzzing = loadSound("assets/sounds/mosquito.mp3");
+    sounds.buzzing.setVolume(1.5)
     sounds.beebuzzing = loadSound("assets/sounds/beebuzzing.mp3");
+    sounds.beebuzzing.setVolume(1.5)
 
     sounds.scream = loadSound("assets/sounds/scream.mp3");
-    sounds.scream.setVolume(2)
+    sounds.scream.setVolume(2.5)
     sounds.otherscream = loadSound("assets/sounds/luigi-burning.mp3");
     sounds.anotherscream = loadSound("assets/sounds/hl1scream.mp3");
 
 
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
-    sounds.slurp.setVolume(6)
+    sounds.slurp.setVolume(8)
     sounds.gulp = loadSound("assets/sounds/gulp-with-bubble.mp3");
+    sounds.gulp.setVolume(6)
 
 
 }
 
+//let gameTime = 10 * 6000
+
+//let gameover = false;
 
 
 
@@ -151,6 +163,10 @@ function draw() {
         checkTongueFlyOverlap();
         checkTongueirregularflyOverlap();
         checkTongueslowflyOverlap();
+        drawScore();
+        drawScoree();
+        drawScoreee();
+
     } else {
         // If not in game, show the appropriate screen overlay.
         if (whatscreen === "start") {
@@ -181,12 +197,42 @@ function instructionsScreen() {
     //startscreen allowing you to press the key before starting the game 
     textSize(20);
     text("Press with a key to start", 205, 400)
+    text(10)
+    text("use mouse to eat the flies and something", 100, 250)
     textSize(50);
     text(BOLD)
     text("instructions", 200, 200)
-    text(30)
-    text("use mouse to eat the flies and something")
 
+
+}
+
+function drawScore() {
+    push();
+    fill("#000000ff");
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text(score, width / 8, height / 8);
+    pop();
+}
+
+function drawScoree() {
+    push();
+    fill("#eeff00ff");
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text(scoree, width / 2, height / 8);
+    pop();
+}
+function drawScoreee() {
+    push();
+    fill("#ff00ffff");
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text(scoreee, (width / 8) * 7, height / 8);
+    pop();
 }
 
 
@@ -214,10 +260,10 @@ function moveFly() {
     // Move the fly
 
     fly.x += fly.speedx;
-    fly.speedx = random(-5, 25);
+    fly.speedx = random(-3, 15);
     fly.x = constrain(fly.x, 0, width);
     fly.speedy = random(-20, 10);
-    fly.y = constrain(fly.y, 100, 200);
+    fly.y = constrain(fly.y, 50, 150);
     fly.y += fly.speedy;
 
     console.log(fly.y);
@@ -229,19 +275,34 @@ function moveFly() {
 
 function moveirregularfly() {
     // Move the fly
-    irregularfly.x += irregularfly.speed
+    irregularfly.x += irregularfly.irspeedx;
+    irregularfly.irspeedx = random(-15, 25);
+    irregularfly.x = constrain(irregularfly.x, 0, width);
+    irregularfly.irspeedy = random(-15, 25);
+    irregularfly.y = constrain(irregularfly.y, 100, 200);
+    irregularfly.y += irregularfly.irspeedy;
+
+    console.log(irregularfly.y);
     // Handle the fly going off the canvas
-    if (irregularfly.x > width) {
+    if (irregularfly.x >= width) {
         resetirregularfly();
     }
 }
 
 function moveslowfly() {
     // Move the fly
-    slowfly.x += noise(0.5, 10, 100);
+    //slowfly.x += noise(0.5, 10, 100);
+    slowfly.x += slowfly.slspeedx;
+    slowfly.slspeedx = random(-10, 15);
+    slowfly.x = constrain(slowfly.x, 0, width);
+    slowfly.slspeedy = random(-5, 10);
+    slowfly.y = constrain(slowfly.y, 150, 250);
+    slowfly.y += slowfly.slspeedy;
+
+    console.log(slowfly.y);
 
     // Handle the fly going off the canvas
-    if (slowfly.x > width) {
+    if (slowfly.x >= width) {
         resetslowfly();
     }
 }
@@ -255,7 +316,7 @@ function drawFly() {
     fill("#000000");
     ellipse(fly.x, fly.y, fly.size);
     pop();
-    console.log(fly.x, fly.y, fly.speedx, fly.speady);
+    //console.log(fly.x, fly.y, fly.speedx, fly.speedy);
 }
 
 function drawirregularfly() {
@@ -414,6 +475,10 @@ function checkTongueFlyOverlap() {
 function checkTongueirregularflyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.tipx, frog.tongue.tipy, irregularfly.x, irregularfly.y);
+    const close = (d < 150);
+    if (close) {
+        fly.y += 150
+    }
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + irregularfly.size / 2);
     if (eaten) {
@@ -429,6 +494,10 @@ function checkTongueirregularflyOverlap() {
 function checkTongueslowflyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.tipx, frog.tongue.tipy, slowfly.x, slowfly.y);
+    const close = (d < 300);
+    if (close) {
+        fly.y += 300
+    }
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + slowfly.size / 2);
     if (eaten) {

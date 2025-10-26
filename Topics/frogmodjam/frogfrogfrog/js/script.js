@@ -15,10 +15,16 @@
 
 "use strict";
 let whatscreen = "start"
+
+//let hellimage;
+//let hellgateimage;
 // Game timer (seconds)
 const GAME_DURATION = 20; // default 60 seconds
 let timerRemaining = GAME_DURATION;
 let timerActive = false;
+
+// Win condition: total flies to eat
+const TARGET_FLIES = 30;
 
 let score = 0;
 let scoree = 0;
@@ -107,6 +113,7 @@ const sounds = {
     otherscream: undefined,
     scarymusic: undefined,
     anotherscream: undefined,
+    //flap: undefined,
 };
 
 
@@ -124,6 +131,8 @@ function preload() {
     sounds.scream.setVolume(2.5)
     sounds.otherscream = loadSound("assets/sounds/luigi-burning.mp3");
     sounds.anotherscream = loadSound("assets/sounds/hl1scream.mp3");
+    //sounds.flap = loadSound("assests/sounds/flapjack.mp3");
+    //sounds.flap.setVolume(6)
 
 
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
@@ -132,12 +141,12 @@ function preload() {
     sounds.gulp.setVolume(6)
 
 
+    //hellimage = loadimage("assets/images/hell.png")
+    //hellgateimage = loadimage("assets/images/hellgate.png")
+
+
 }
 
-//let gameTime = 10 * 2000;
-
-
-//let gameover = false;
 
 
 
@@ -204,6 +213,14 @@ function draw() {
             whatscreen = "end";
         }
 
+        // Check win condition (total flies eaten)
+        const totalEaten = score + scoree + scoreee;
+        if (totalEaten >= TARGET_FLIES) {
+            // Player wins
+            timerActive = false;
+            whatscreen = "win";
+        }
+
         // Display timer at top-left
         push();
         textSize(20);
@@ -218,6 +235,8 @@ function draw() {
             startScreen();
         } else if (whatscreen === "instructions") {
             instructionsScreen();
+        } else if (whatscreen === "win") {
+            winScreen();
         } else {
             endScreen();
         }
@@ -227,26 +246,33 @@ function draw() {
 
 
 function startScreen() {
-    background("#f47becff");
+    background("#532222d3");
+
     //startscreen allowing you to press the key before starting the game 
     textSize(20);
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
     text("Fly Demise", 200, 200)
+    //image(hellimage, 150, 200, width, height);
 }
 
 
 function instructionsScreen() {
-    background("#f47becff");
+    background("#532222d3");
     //startscreen allowing you to press the key before starting the game 
     textSize(20);
     text("Press with a key to start", 200, 400)
     text(10)
-    text("use mouse to eat the flies and something", 100, 250)
-    textSize(50);
+    text("- as your soul is trapped in hell", 45, 220)
+    text("- the devil has an offer for you", 45, 240)
+    text("- in order to escape hell", 45, 260)
+    text("- catch up to 30 flies to earn your 'freedom'", 45, 280)
+    text("- use Mouse to Move tongue", 45, 300)
+    text("- Click Mouse 1 to Launch tongue", 45, 320)
+    textSize(75);
     text(BOLD)
-    text("instructions", 200, 200)
+    text("Instructions", 125, 100)
 
 
 }
@@ -279,23 +305,6 @@ function drawScoreee() {
     text(scoreee, (width / 8) * 7, height / 8);
     pop();
 }
-
-
-/*function mainGame() {
-    background("#662222ff");
-    moveFly();
-    drawFly();
-    moveirregularfly();
-    drawirregularfly();
-    moveslowfly();
-    drawslowfly();
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
-    checkTongueirregularflyOverlap();
-    checkTongueslowflyOverlap();
-}*/
 
 /**
  * Moves the fly according to its speed
@@ -446,8 +455,6 @@ function moveTongue() {
 /**
  * Displays the tongue (tip and line connection) and the frog (body)
  */
-
-
 function drawFrog() {
     // Draw the tongue tip
     push();
@@ -611,6 +618,19 @@ function keyPressed() {
         scoreee = 0;
     }
 
+    else if (whatscreen === "win") {
+        // Restart from win screen same as from end
+        whatscreen = "start";
+        timerRemaining = GAME_DURATION;
+        timerActive = false;
+        resetFly();
+        resetirregularfly();
+        resetslowfly();
+        score = 0;
+        scoree = 0;
+        scoreee = 0;
+    }
+
 }
 
 function endScreen() {
@@ -627,4 +647,31 @@ function endScreen() {
     textSize(18);
     text("Press any key to restart", width / 2, height / 2 + 50);
     pop();
+
+    /*
+    sounds.scarymusic.stop();
+    sounds.buzzing.stop();
+    sounds.beebuzzing.stop();
+    */
+}
+
+function winScreen() {
+    // Simple win screen showing final total and restart prompt.
+    background(20, 120, 20, 200);
+    push();
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(56);
+    text("You Win!", width / 2, height / 2 - 60);
+    textSize(28);
+    const total = score + scoree + scoreee;
+    text("Flies eaten: " + total + " / " + TARGET_FLIES, width / 2, height / 2);
+    textSize(18);
+    text("Press any key to play again", width / 2, height / 2 + 60);
+    pop();
+    /*
+    sounds.scarymusic.stop();
+    sounds.buzzing.stop();
+    sounds.beebuzzing.stop();
+    */
 }

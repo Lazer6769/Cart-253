@@ -16,8 +16,8 @@
 "use strict";
 let whatscreen = "start"
 
-//let hellimage;
-//let hellgateimage;
+//let hellimage = undefined;
+//let hellgateimage = undefined;
 // Game timer (seconds)
 const GAME_DURATION = 20; // default 60 seconds
 let timerRemaining = GAME_DURATION;
@@ -113,7 +113,9 @@ const sounds = {
     otherscream: undefined,
     scarymusic: undefined,
     anotherscream: undefined,
-    //flap: undefined,
+    flap: undefined,
+    laughing: undefined,
+
 };
 
 
@@ -131,8 +133,11 @@ function preload() {
     sounds.scream.setVolume(2.5)
     sounds.otherscream = loadSound("assets/sounds/luigi-burning.mp3");
     sounds.anotherscream = loadSound("assets/sounds/hl1scream.mp3");
-    //sounds.flap = loadSound("assests/sounds/flapjack.mp3");
-    //sounds.flap.setVolume(6)
+    sounds.flap = loadSound("assets/sounds/flapjack.mp3");
+    sounds.flap.setVolume(6)
+    sounds.laughing = loadSound("assets/sounds/cod-zombies-evil-laugh.mp3")
+
+
 
 
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
@@ -165,9 +170,9 @@ function setup() {
     resetFly();
     //resetgameTime();
 
-    sounds.buzzing.loop();
-    sounds.beebuzzing.loop();
-    sounds.scarymusic.loop();
+    // sounds.buzzing.loop();
+    // sounds.beebuzzing.loop();
+    // sounds.scarymusic.loop();
 }
 
 function draw() {
@@ -254,7 +259,7 @@ function startScreen() {
     textSize(50);
     text(BOLD)
     text("Fly Demise", 200, 200)
-    //image(hellimage, 150, 200, width, height);
+    //image(hellgateimage, 0, 0, width, height);
 }
 
 
@@ -267,7 +272,7 @@ function instructionsScreen() {
     text("- as your soul is trapped in hell", 45, 220)
     text("- the devil has an offer for you", 45, 240)
     text("- in order to escape hell", 45, 260)
-    text("- catch up to 30 flies to earn your 'freedom'", 45, 280)
+    text("- capture 30 fly souls to earn your 'freedom'", 45, 280)
     text("- use Mouse to Move tongue", 45, 300)
     text("- Click Mouse 1 to Launch tongue", 45, 320)
     textSize(75);
@@ -283,7 +288,7 @@ function drawScore() {
     textSize(32);
     textStyle(BOLD);
     textAlign(CENTER, CENTER);
-    text(score, width / 8, height / 8);
+    text(score, 520, 30);
     pop();
 }
 
@@ -293,7 +298,7 @@ function drawScoree() {
     textSize(32);
     textStyle(BOLD);
     textAlign(CENTER, CENTER);
-    text(scoree, width / 2, height / 8);
+    text(scoree, 560, 30);
     pop();
 }
 function drawScoreee() {
@@ -302,7 +307,7 @@ function drawScoreee() {
     textSize(32);
     textStyle(BOLD);
     textAlign(CENTER, CENTER);
-    text(scoreee, (width / 8) * 7, height / 8);
+    text(scoreee, 600, 30);
     pop();
 }
 
@@ -585,13 +590,15 @@ function mousePressed() {
         sounds.slurp.play();
     }
 }
+//
+/*
 function mousePressed() {
     if (frog.tongue.state === "idle") {
         frog.tongue.state = "outbound";
         sounds.slurp.play();
     }
 }
-
+*/
 function keyPressed() {
     // p5 calls keyPressed() when any key is pressed in global mode.
     if (whatscreen === "start") {
@@ -601,6 +608,9 @@ function keyPressed() {
         // Start/restart the game timer
         timerRemaining = GAME_DURATION;
         timerActive = true;
+        sounds.buzzing.loop();
+        sounds.beebuzzing.loop();
+        sounds.scarymusic.loop();
     } else if (whatscreen === "game") {
         // no-op for now
     }
@@ -647,12 +657,14 @@ function endScreen() {
     textSize(18);
     text("Press any key to restart", width / 2, height / 2 + 50);
     pop();
+    //sounds.flap.loop() = false;
+    sounds.flap.play();
 
-    /*
+
     sounds.scarymusic.stop();
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
-    */
+
 }
 
 function winScreen() {
@@ -662,16 +674,22 @@ function winScreen() {
     textAlign(CENTER, CENTER);
     fill(255);
     textSize(56);
-    text("You Win!", width / 2, height / 2 - 60);
+    text("'You Win!'", width / 2, height / 5 - 60);
+    textSize(32);
+    text("you reall thought you could escape hell?", width / 2, height / 3);
+    text("how foolish can you be?", width / 2, height / 3 + 40);
+    text('you are going to supper for eternity', width / 2, height / 3 + 80);
+
     textSize(28);
     const total = score + scoree + scoreee;
-    text("Flies eaten: " + total + " / " + TARGET_FLIES, width / 2, height / 2);
+    text("Flies eaten: " + total + " / " + TARGET_FLIES, width / 2, height / 1.5 + 60);
     textSize(18);
-    text("Press any key to play again", width / 2, height / 2 + 60);
+    text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
-    /*
+    sounds.laughing.play();
+
     sounds.scarymusic.stop();
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
-    */
+
 }

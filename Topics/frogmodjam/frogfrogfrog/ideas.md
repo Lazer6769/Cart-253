@@ -1,24 +1,16 @@
 # Starting points
 
 
-Finding metro tickets on the ground and trying to sell them
+The frog is in hell X
 
-**Frog eating flies but it gets harder and harder to catch them**
+**Frog needs to capture # of fly souls to escape hell or thats what the frog thinks**
 
-Swimming lessons but controlling your body is really hard
+There are multiple flies X
 
-Crossing the street and it’s busy
+The frog is now evil X
 
-Riding a tricycle but the wheel keeps falling off
+The flies can change pace (speed) X 
 
-Shaving people’s heads in beautiful patterns and showing them at an art gallery
+The flies move in weird ways X
 
-Making cups out of clay and seeing what cafe customers say about them
-
-Growing plants that eat you
-
-Keeping a computer mouse as a pet and looking after it
-
-Rewiring a light
-
-Cooking spaghetti with a dog
+The frog does nothing and croaks X

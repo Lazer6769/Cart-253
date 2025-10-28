@@ -16,10 +16,20 @@
 "use strict";
 let whatscreen = "start"
 
-//let hellimage = undefined;
-//let hellgateimage = undefined;
+let hellimage = undefined;
+let hellgateimage = undefined;
+let beeimage = undefined;
+let flyimage = undefined;
+let mosquitoimage = undefined;
+
+let cry;
+let screaming;
+let trapped;
+let freedom;
+
+let bgisplaying = false;
 // Game timer (seconds)
-const GAME_DURATION = 20; // default 60 seconds
+const GAME_DURATION = 10; // default 60 seconds
 let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
@@ -83,7 +93,7 @@ const frog = {
 const fly = {
     x: 0,
     y: 200, // Will be random
-    size: 10,
+    size: 20,
     speedx: 3,
     speedy: 0
 };
@@ -91,7 +101,7 @@ const fly = {
 const irregularfly = {
     x: 0,
     y: 150,
-    size: 10,
+    size: 15,
     irspeedx: 2,
     irspeedy: 0
 };
@@ -99,7 +109,7 @@ const irregularfly = {
 const slowfly = {
     x: 0,
     y: 100,
-    size: 10,
+    size: 20,
     slspeedx: 1,
     slspeedy: 0
 }
@@ -136,6 +146,7 @@ function preload() {
     sounds.flap = loadSound("assets/sounds/flapjack.mp3");
     sounds.flap.setVolume(6)
     sounds.laughing = loadSound("assets/sounds/cod-zombies-evil-laugh.mp3")
+    sounds.laughing.setVolume(4.5)
 
 
 
@@ -146,8 +157,16 @@ function preload() {
     sounds.gulp.setVolume(6)
 
 
-    //hellimage = loadimage("assets/images/hell.png")
-    //hellgateimage = loadimage("assets/images/hellgate.png")
+    hellimage = loadImage("assets/images/hell.png")
+    hellgateimage = loadImage("assets/images/hellgate.png")
+    beeimage = loadImage("assets/images/bee.png")
+    flyimage = loadImage("assets/images/cartoonfly.png")
+    mosquitoimage = loadImage("assets/images/mosquito.png")
+
+    cry = loadImage("assets/images/why-cry-why-pepe-why.gif")
+    screaming = loadImage("assets/images/pepescreaming.gif")
+    trapped = loadImage("assets/images/pepeblue-pepebluesky.gif")
+    freedom = loadImage("assets/images/pepeagony.gif")
 
 
 }
@@ -216,6 +235,7 @@ function draw() {
         if (progress >= 1) {
             timerActive = false;
             whatscreen = "end";
+            sounds.flap.play();
         }
 
         // Check win condition (total flies eaten)
@@ -224,6 +244,7 @@ function draw() {
             // Player wins
             timerActive = false;
             whatscreen = "win";
+            sounds.laughing.play();
         }
 
         // Display timer at top-left
@@ -242,7 +263,7 @@ function draw() {
             instructionsScreen();
         } else if (whatscreen === "win") {
             winScreen();
-        } else {
+        } else if (whatscreen === "end") {
             endScreen();
         }
     }
@@ -252,20 +273,25 @@ function draw() {
 
 function startScreen() {
     background("#532222d3");
-
+    image(hellgateimage, 0, 0, width, height);
+    image(screaming, 250, 250, 150, 150);
     //startscreen allowing you to press the key before starting the game 
+    fill(255)
     textSize(20);
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
     text("Fly Demise", 200, 200)
-    //image(hellgateimage, 0, 0, width, height);
+
 }
 
 
 function instructionsScreen() {
     background("#532222d3");
+    image(hellimage, 0, 0, width, height);
+    image(trapped, 250, 250, 150, 150);
     //startscreen allowing you to press the key before starting the game 
+    fill(255, 203, 80)
     textSize(20);
     text("Press with a key to start", 200, 400)
     text(10)
@@ -373,7 +399,7 @@ function drawFly() {
     push();
     noStroke();
     fill("#000000");
-    ellipse(fly.x, fly.y, fly.size);
+    image(flyimage, fly.x, fly.y, fly.size, fly.size);
     pop();
     //console.log(fly.x, fly.y, fly.speedx, fly.speedy);
 }
@@ -382,7 +408,7 @@ function drawirregularfly() {
     push();
     noStroke();
     fill("#f0ff00");
-    ellipse(irregularfly.x, irregularfly.y, irregularfly.size);
+    image(beeimage, irregularfly.x, irregularfly.y, irregularfly.size, irregularfly.size);
     pop();
 }
 
@@ -390,7 +416,7 @@ function drawslowfly() {
     push();
     noStroke();
     fill("#ff00ff");
-    ellipse(slowfly.x, slowfly.y, slowfly.size);
+    image(mosquitoimage, slowfly.x, slowfly.y, slowfly.size, slowfly.size);
     pop();
 }
 
@@ -599,7 +625,15 @@ function mousePressed() {
     }
 }
 */
+
+
+
+
 function keyPressed() {
+    if (!bgisplaying) {
+        sounds.scarymusic.loop();
+        bgisplaying = true;
+    }
     // p5 calls keyPressed() when any key is pressed in global mode.
     if (whatscreen === "start") {
         whatscreen = "instructions";
@@ -610,7 +644,7 @@ function keyPressed() {
         timerActive = true;
         sounds.buzzing.loop();
         sounds.beebuzzing.loop();
-        sounds.scarymusic.loop();
+        //sounds.scarymusic.loop();
     } else if (whatscreen === "game") {
         // no-op for now
     }
@@ -646,6 +680,7 @@ function keyPressed() {
 function endScreen() {
     // Simple end screen showing final scores and restart prompt.
     background(0, 0, 0, 180);
+    image(cry, 250, 250, 150, 150);
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -658,10 +693,11 @@ function endScreen() {
     text("Press any key to restart", width / 2, height / 2 + 50);
     pop();
     //sounds.flap.loop() = false;
-    sounds.flap.play();
+    //sounds.flap.play();
 
 
     sounds.scarymusic.stop();
+    bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
 
@@ -670,6 +706,7 @@ function endScreen() {
 function winScreen() {
     // Simple win screen showing final total and restart prompt.
     background(20, 120, 20, 200);
+    image(freedom, 250, 250, 150, 150);
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -678,7 +715,7 @@ function winScreen() {
     textSize(32);
     text("you reall thought you could escape hell?", width / 2, height / 3);
     text("how foolish can you be?", width / 2, height / 3 + 40);
-    text('you are going to supper for eternity', width / 2, height / 3 + 80);
+    text('you are going to super hell for eternity', width / 2, height / 3 + 80);
 
     textSize(28);
     const total = score + scoree + scoreee;
@@ -686,9 +723,10 @@ function winScreen() {
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
-    sounds.laughing.play();
+    //sounds.laughing.play();
 
     sounds.scarymusic.stop();
+    bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
 

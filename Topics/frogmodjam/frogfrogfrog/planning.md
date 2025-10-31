@@ -5,6 +5,7 @@
 The initial idea:
 
 > Frog eating flies
+> the frog can eat multiple flies
 
 ## Experience design
 
@@ -21,6 +22,10 @@ Basic things to do:
 - Move the frog (how? mouse? keyboard? breathing?)
 - Move the fly (in line? buzzing around? random?)
 - Figure out if the tongue hits the fly?
+- see if music plays 
+- firgure out a way to get images in the game 
+- see if i can add gif's to my game start, intro, win, and end screens for the frog 
+- see if i can only have the tongue move while the frog is sitting there 
 
 Questions:
 

@@ -1,13 +1,14 @@
 /**
- * Frogfrogfrog
- * Pippin Barr
+ * Frog demise
+ * Jordan Lobasso - 2025
  * 
- * A game of catching flies with your frog-tongue
+ * A game about 'escaping hell' by catching fly souls with a frog's tongue.
  * 
  * Instructions:
- * - Move the frog with your mouse
+ * - Move the frog's tongue with your mouse
  * - Click to launch the tongue
  * - Catch flies
+ * - escape hell!
  * 
  * Made with p5
  * https://p5js.org/
@@ -18,9 +19,12 @@ let whatscreen = "start"
 
 let hellimage = undefined;
 let hellgateimage = undefined;
+let thehellimage = undefined;
+let superhellimage = undefined;
 let beeimage = undefined;
 let flyimage = undefined;
 let mosquitoimage = undefined;
+let thedevilimage = undefined;
 
 let cry;
 let screaming;
@@ -34,7 +38,7 @@ let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
 // Win condition: total flies to eat
-const TARGET_FLIES = 30;
+const TARGET_FLIES = 3;
 
 let score = 0;
 let scoree = 0;
@@ -159,9 +163,12 @@ function preload() {
 
     hellimage = loadImage("assets/images/hell.png")
     hellgateimage = loadImage("assets/images/hellgate.png")
+    thehellimage = loadImage("assets/images/The_Hell.png")
+    superhellimage = loadImage("assets/images/superhellmyedition.png")
     beeimage = loadImage("assets/images/bee.png")
     flyimage = loadImage("assets/images/cartoonfly.png")
     mosquitoimage = loadImage("assets/images/mosquito.png")
+    thedevilimage = loadImage("assets/images/Thedevil.png")
 
     cry = loadImage("assets/images/why-cry-why-pepe-why.gif")
     screaming = loadImage("assets/images/pepescreaming.gif")
@@ -293,14 +300,17 @@ function instructionsScreen() {
     //startscreen allowing you to press the key before starting the game 
     fill(255, 203, 80)
     textSize(20);
-    text("Press with a key to start", 200, 400)
+    text("Press with a key to start", 200, 440)
     text(10)
-    text("- as your soul is trapped in hell", 45, 220)
-    text("- the devil has an offer for you", 45, 240)
-    text("- in order to escape hell", 45, 260)
-    text("- capture 30 fly souls to earn your 'freedom'", 45, 280)
-    text("- use Mouse to Move tongue", 45, 300)
-    text("- Click Mouse 1 to Launch tongue", 45, 320)
+    text("- All your live you have malicious", 45, 160)
+    text(" breaking the 10 frogments has cursed your soul", 45, 180)
+    text("- to eternal damnnation in hell", 45, 200)
+    text("- however you are aproached by the devil himself", 45, 220)
+    text("- he offers you a deal to resurrect into a new life", 45, 240)
+    text("- catch 30 fly souls to earn your freedom", 45, 260)
+    text("- and escape from this nightmare ", 45, 280)
+    text("- use the Mouse to Move tongue", 45, 320)
+    text("- Click Mouse 1 to Launch tongue", 45, 340)
     textSize(75);
     text(BOLD)
     text("Instructions", 125, 100)
@@ -680,7 +690,8 @@ function keyPressed() {
 function endScreen() {
     // Simple end screen showing final scores and restart prompt.
     background(0, 0, 0, 180);
-    image(cry, 250, 250, 150, 150);
+    image(thehellimage, 0, 0, width, height);
+    image(cry, 350, 400, 75, 75);
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -706,7 +717,9 @@ function endScreen() {
 function winScreen() {
     // Simple win screen showing final total and restart prompt.
     background(20, 120, 20, 200);
-    image(freedom, 250, 250, 150, 150);
+    image(superhellimage, 0, 0, width, height);
+    image(thedevilimage, 3, 250, 250, 250);
+    image(freedom, 150, 405, 75, 75);
     push();
     textAlign(CENTER, CENTER);
     fill(255);

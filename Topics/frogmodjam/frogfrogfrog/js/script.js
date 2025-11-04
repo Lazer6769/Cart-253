@@ -16,7 +16,7 @@
 
 "use strict";
 let whatscreen = "start"
-
+// images for backgrounds and sprites
 let hellimage = undefined;
 let hellgateimage = undefined;
 let thehellimage = undefined;
@@ -25,7 +25,7 @@ let beeimage = undefined;
 let flyimage = undefined;
 let mosquitoimage = undefined;
 let thedevilimage = undefined;
-
+// gifs that represent the frog 
 let cry;
 let screaming;
 let trapped;
@@ -57,6 +57,7 @@ const frog = {
         y: 480,
         size: 200
     },
+    // The frog's eyes and pupils have positions and sizes
     Eye1: {
         x: 280,
         y: 440,
@@ -101,7 +102,8 @@ const fly = {
     speedx: 3,
     speedy: 0
 };
-
+// irregular fly
+// has a position size and speed of horizontal movement
 const irregularfly = {
     x: 0,
     y: 150,
@@ -109,7 +111,8 @@ const irregularfly = {
     irspeedx: 2,
     irspeedy: 0
 };
-
+// slow fly 
+// has a position size and speed of horizontal movement
 const slowfly = {
     x: 0,
     y: 100,
@@ -117,7 +120,7 @@ const slowfly = {
     slspeedx: 1,
     slspeedy: 0
 }
-
+// Object to hold all sounds
 const sounds = {
     buzzing: undefined,
     gulp: undefined,
@@ -132,7 +135,7 @@ const sounds = {
 
 };
 
-
+// preload all assets
 function preload() {
 
 
@@ -297,7 +300,7 @@ function instructionsScreen() {
     background("#532222d3");
     image(hellimage, 0, 0, width, height);
     image(trapped, 250, 250, 150, 150);
-    //startscreen allowing you to press the key before starting the game 
+    //instructionsScreen allowing you to press the key before starting the game 
     fill(255, 203, 80)
     textSize(20);
     text("Press with a key to start", 200, 440)
@@ -317,7 +320,7 @@ function instructionsScreen() {
 
 
 }
-
+// draw the score at the top right for each fly type
 function drawScore() {
     push();
     fill("#000000ff");

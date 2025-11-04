@@ -6,12 +6,14 @@ The initial idea:
 
 > Frog eating flies
 > the frog can eat multiple flies
+> the frog is in hell for the sins that it has committed
 
 ## Experience design
 
 The experience:
 
-> The user controls a frog at the bottom of the screen, they can shoot out the frog's tongue and catch a fly which is moving on the screen. If the tongue hits the fly it gets eaten.
+> while the frog can not move it can move its tongue. the player must control where the tongue goes in order to capture
+the souls of the flies in order to escape his torment 
 
 ## Breaking it down
 
@@ -32,7 +34,7 @@ Questions:
 - What does the frog look like?
     - Circles!
 - How does the user control the frog?
-    - User controls frog with the mouse position, just to the left and right
+    - User controls the frog tongue with the mouse position, just to the left and right
     - User launches the tongue with a mouse click
 - How does the fly move?
     - The fly starts on the left at a random y position, and moves to the right in a line

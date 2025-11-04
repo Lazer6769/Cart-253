@@ -38,7 +38,7 @@ let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
 // Win condition: total flies to eat
-const TARGET_FLIES = 3;
+const TARGET_FLIES = 30;
 
 let score = 0;
 let scoree = 0;

@@ -24,12 +24,21 @@ setup()
 
 draw()
     Draw the background // Probably just blue or something
-    moveFly()
-    drawFly()
-    moveFrog()
-    moveTongue()
-    drawFrog()
-    checkTongueFlyOverlap()
+        moveFly();
+        drawFly();
+        moveirregularfly();
+        drawirregularfly();
+        moveslowfly();
+        drawslowfly();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkTongueFlyOverlap();
+        checkTongueirregularflyOverlap();
+        checkTongueslowflyOverlap();
+        drawScore();
+        drawScoree();
+        drawScoreee();
 
 moveFly()
     add fly speed to fly x
@@ -39,6 +48,20 @@ moveFly()
 
 drawFly()
     Draw a black circle at the fly's position with its size
+
+
+moveirregularfly()
+add irregularfly speed to fly x 
+add irregularfly speed to fly y 
+move the fly back to the left once it reachs its limit 
+
+drawirregularfly()
+    Draw a yellow circle at the irregular fly's position and its size
+
+moveslowfly()
+add slowfly speed to slowfly x 
+add slowfly speed to slowfly y 
+
 
 moveFrog()
     Set the frog's x to the mouse x
@@ -56,6 +79,9 @@ moveTongue()
         if (tongue hit the bottom)
             set the tongue state to idle
 
+since the frog is going to be stationary the tongue is the only thing that moves 
+set the frog's tongue x to the mouseX
+
 drawFrog()
     Draw a red circle at the tongue position with its size
     Draw a red line from the tongue position to the frog position
@@ -65,6 +91,14 @@ checkTongueFlyOverlap()
     if (tongue circle overlaps the fly)
         Move the fly back to the left at a random y
         set the tongue state to inbound
+
+checktongueirregularflyoverlap() 
+    if the tongue is overlapping with the irregularfly
+    move the irregularfly back to the left and a random y position
+
+checktongueslowflyoverlap() 
+    if the tongue is overlapping with the slowfly
+    move the slowfly back to the left and a random y position
 
 mousePressed()
     if (tongue state is idle)

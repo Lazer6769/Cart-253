@@ -72,7 +72,7 @@ What is there?
         pepeblue-pepeblusky.gif
         pepescreaming.gif
         why-cry-why-pepe-why.gif
--sounds 
+- sounds 
         17.Haunted Fortress.mp3
         beebuzzing.mp3
         cod-zombies-evil-laugh.mp3
@@ -183,6 +183,7 @@ What happens in this project?
         drawScore();
         drawScoree();
         drawScoreee();
+
         - Add the fly's speed to it x
         - Add the fly's speed to it y (so it jitters)
         - Draw a circle at the fly's position with its size (black) another one(pink) and another one(yellow) but replace the colors with images of a regular fly, a bee, and a mosquito
@@ -221,7 +222,9 @@ Events
             have sounds play when the frog uses it's tongue
 
             have sounds play when the frog eats a fly 
-            and have sounds when the fly is eaten by the fly
+            and 
+            
+            have sounds when the fly is eaten by the fly
 
             - have a timer so the player has a set time until the game is over (frog dies)
 

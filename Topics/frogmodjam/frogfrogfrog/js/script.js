@@ -306,7 +306,7 @@ function instructionsScreen() {
     text("Press with a key to start", 200, 440)
     text(10)
     text("- All your life you have been a malicious frog", 45, 160)
-    text(" breaking the 10 frogments has cursed your soul", 45, 180)
+    text("- breaking the 10 frogments has cursed your soul", 45, 180)
     text("- to eternal damnnation in hell", 45, 200)
     text("- however you are aproached by the devil himself", 45, 220)
     text("- he offers you a deal to resurrect into a new life", 45, 240)

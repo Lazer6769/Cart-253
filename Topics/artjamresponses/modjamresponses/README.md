@@ -1,4 +1,4 @@
-# MODJAMRESPONSES
+# ARTJAMRESPONSES
 
 Jordan Lobasso 
 

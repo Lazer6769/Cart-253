@@ -17,19 +17,12 @@
 "use strict";
 let whatscreen = "start"
 // images for backgrounds and sprites
-let hellimage = undefined;
-let hellgateimage = undefined;
-let thehellimage = undefined;
-let superhellimage = undefined;
 let beeimage = undefined;
 let flyimage = undefined;
 let mosquitoimage = undefined;
-let thedevilimage = undefined;
+let heavenstairsimage = undefined
+let heavenlyskyimage = undefined
 // gifs that represent the frog 
-let cry;
-let screaming;
-let trapped;
-let freedom;
 
 let bgisplaying = false;
 // Game timer (seconds)
@@ -104,6 +97,7 @@ const fly = {
 };
 // irregular fly
 // has a position size and speed of horizontal movement
+/*
 const irregularfly = {
     x: 0,
     y: 150,
@@ -120,18 +114,15 @@ const slowfly = {
     slspeedx: 1,
     slspeedy: 0
 }
+    */
+
 // Object to hold all sounds
 const sounds = {
     buzzing: undefined,
     gulp: undefined,
     slurp: undefined,
     beebuzzing: undefined,
-    scream: undefined,
-    otherscream: undefined,
-    scarymusic: undefined,
-    anotherscream: undefined,
-    flap: undefined,
-    laughing: undefined,
+
 
 };
 
@@ -139,21 +130,13 @@ const sounds = {
 function preload() {
 
 
-    sounds.scarymusic = loadSound("assets/sounds/17. Haunted Fortress.mp3")
-    sounds.scarymusic.setVolume(0.5);
+
     sounds.buzzing = loadSound("assets/sounds/mosquito.mp3");
     sounds.buzzing.setVolume(1.5)
     sounds.beebuzzing = loadSound("assets/sounds/beebuzzing.mp3");
     sounds.beebuzzing.setVolume(1.5)
 
-    sounds.scream = loadSound("assets/sounds/scream.mp3");
-    sounds.scream.setVolume(2.5)
-    sounds.otherscream = loadSound("assets/sounds/luigi-burning.mp3");
-    sounds.anotherscream = loadSound("assets/sounds/hl1scream.mp3");
-    sounds.flap = loadSound("assets/sounds/flapjack.mp3");
-    sounds.flap.setVolume(6)
-    sounds.laughing = loadSound("assets/sounds/cod-zombies-evil-laugh.mp3")
-    sounds.laughing.setVolume(4.5)
+
 
 
 
@@ -164,25 +147,16 @@ function preload() {
     sounds.gulp.setVolume(6)
 
 
-    hellimage = loadImage("assets/images/hell.png")
-    hellgateimage = loadImage("assets/images/hellgate.png")
-    thehellimage = loadImage("assets/images/The_Hell.png")
-    superhellimage = loadImage("assets/images/superhellmyedition.png")
+
     beeimage = loadImage("assets/images/bee.png")
     flyimage = loadImage("assets/images/cartoonfly.png")
     mosquitoimage = loadImage("assets/images/mosquito.png")
-    thedevilimage = loadImage("assets/images/Thedevil.png")
+    // heavenstairsimage = loadImage("assets/images/heavenstairs.png")
+    // heavenlyskyimage = loadImage("assets/images/heaven.png")
 
-    cry = loadImage("assets/images/why-cry-why-pepe-why.gif")
-    screaming = loadImage("assets/images/pepescreaming.gif")
-    trapped = loadImage("assets/images/pepeblue-pepebluesky.gif")
-    freedom = loadImage("assets/images/pepeagony.gif")
 
 
 }
-
-
-
 
 /**
  * Creates the canvas and initializes the fly
@@ -211,19 +185,19 @@ function draw() {
         background("#662222ff");
         moveFly();
         drawFly();
-        moveirregularfly();
-        drawirregularfly();
-        moveslowfly();
-        drawslowfly();
+        //moveirregularfly();
+        //drawirregularfly();
+        //moveslowfly();
+        //drawslowfly();
         moveFrog();
         moveTongue();
         drawFrog();
         checkTongueFlyOverlap();
-        checkTongueirregularflyOverlap();
-        checkTongueslowflyOverlap();
+        //checkTongueirregularflyOverlap();
+        //checkTongueslowflyOverlap();
         drawScore();
-        drawScoree();
-        drawScoreee();
+        //drawScoree();
+        //drawScoreee();
 
         // Update timer (deltaTime is milliseconds since last frame)
         if (timerActive) {
@@ -282,9 +256,8 @@ function draw() {
 
 
 function startScreen() {
-    background("#532222d3");
-    image(hellgateimage, 0, 0, width, height);
-    image(screaming, 250, 250, 150, 150);
+    background("#000000d3");
+
     //startscreen allowing you to press the key before starting the game 
     fill(255)
     textSize(20);
@@ -297,21 +270,13 @@ function startScreen() {
 
 
 function instructionsScreen() {
-    background("#532222d3");
-    image(hellimage, 0, 0, width, height);
-    image(trapped, 250, 250, 150, 150);
+    background("#000000d3");
+
     //instructionsScreen allowing you to press the key before starting the game 
     fill(255, 203, 80)
     textSize(20);
     text("Press with a key to start", 200, 440)
     text(10)
-    text("- All your life you have been a malicious frog", 45, 160)
-    text("- breaking the 10 frogments has cursed your soul", 45, 180)
-    text("- to eternal damnnation in hell", 45, 200)
-    text("- however you are aproached by the devil himself", 45, 220)
-    text("- he offers you a deal to resurrect into a new life", 45, 240)
-    text("- catch 30 fly souls to earn your freedom", 45, 260)
-    text("- and escape from this nightmare ", 45, 280)
     text("- use the Mouse to Move tongue", 45, 320)
     text("- Click Mouse 1 to Launch tongue", 45, 340)
     textSize(75);
@@ -330,7 +295,7 @@ function drawScore() {
     text(score, 520, 30);
     pop();
 }
-
+/*
 function drawScoree() {
     push();
     fill("#eeff00ff");
@@ -349,7 +314,7 @@ function drawScoreee() {
     text(scoreee, 600, 30);
     pop();
 }
-
+*/
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
@@ -370,7 +335,7 @@ function moveFly() {
         resetFly();
     }
 }
-
+/*
 function moveirregularfly() {
     // Move the fly
     irregularfly.x += irregularfly.irspeedx;
@@ -404,7 +369,7 @@ function moveslowfly() {
         resetslowfly();
     }
 }
-
+*/
 /**
  * Draws the fly as a black circle
  */
@@ -416,7 +381,7 @@ function drawFly() {
     pop();
     //console.log(fly.x, fly.y, fly.speedx, fly.speedy);
 }
-
+/*
 function drawirregularfly() {
     push();
     noStroke();
@@ -432,6 +397,7 @@ function drawslowfly() {
     image(mosquitoimage, slowfly.x, slowfly.y, slowfly.size, slowfly.size);
     pop();
 }
+*/
 
 /**
  * Resets the fly to the left with a random y
@@ -440,7 +406,7 @@ function resetFly() {
     fly.x = 0;
     fly.y = random(0, 300);
 }
-
+/*
 function resetirregularfly() {
     irregularfly.x = 0;
     irregularfly.y = random(0, 300);
@@ -450,7 +416,7 @@ function resetslowfly() {
     slowfly.x = 0;
     slowfly.y = random(0, 300);
 }
-
+*/
 /**
  * Moves the frog to the mouse position on x
  */
@@ -524,25 +490,25 @@ function drawFrog() {
 
     //frog eye 
     push();
-    fill("#000000")
+    fill("#ffffffff")
     noStroke();
     ellipse(frog.Eye1.x, frog.Eye1.y, frog.Eye1.size);
     pop();
     //frog eye
     push();
-    fill("#000000")
+    fill("#ffffffff")
     noStroke();
     ellipse(frog.Eye2.x, frog.Eye2.y, frog.Eye2.size);
     pop();
     //frog pupil
     push();
-    fill("#ff0000ff")
+    fill("#000000ff")
     noStroke();
     ellipse(frog.Pupil1.x, frog.Pupil1.y, frog.Pupil1.size);
     pop();
     //frog pupil
     push();
-    fill("#ff0000ff")
+    fill("#000000ff")
     noStroke();
     ellipse(frog.Pupil2.x, frog.Pupil2.y, frog.Pupil2.size);
     pop();
@@ -573,6 +539,7 @@ function checkTongueFlyOverlap() {
         frog.tongue.state = "inbound";
     }
 }
+/* 
 
 function checkTongueirregularflyOverlap() {
     // Get distance from tongue to fly
@@ -619,7 +586,7 @@ function checkTongueslowflyOverlap() {
         frog.tongue.state = "inbound";
     }
 }
-
+*/
 /**
  * Launch the tongue on click (if it's not launched yet)
  */
@@ -644,7 +611,7 @@ function mousePressed() {
 
 function keyPressed() {
     if (!bgisplaying) {
-        sounds.scarymusic.loop();
+
         bgisplaying = true;
     }
     // p5 calls keyPressed() when any key is pressed in global mode.
@@ -657,7 +624,7 @@ function keyPressed() {
         timerActive = true;
         sounds.buzzing.loop();
         sounds.beebuzzing.loop();
-        //sounds.scarymusic.loop();
+
     } else if (whatscreen === "game") {
         // no-op for now
     }
@@ -671,8 +638,8 @@ function keyPressed() {
         resetirregularfly();
         resetslowfly();
         score = 0;
-        scoree = 0;
-        scoreee = 0;
+        //scoree = 0;
+        //scoreee = 0;
     }
 
     else if (whatscreen === "win") {
@@ -684,8 +651,8 @@ function keyPressed() {
         resetirregularfly();
         resetslowfly();
         score = 0;
-        scoree = 0;
-        scoreee = 0;
+        //scoree = 0;
+        //scoreee = 0;
     }
 
 }
@@ -693,8 +660,7 @@ function keyPressed() {
 function endScreen() {
     // Simple end screen showing final scores and restart prompt.
     background(0, 0, 0, 180);
-    image(thehellimage, 0, 0, width, height);
-    image(cry, 350, 400, 75, 75);
+
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -710,7 +676,7 @@ function endScreen() {
     //sounds.flap.play();
 
 
-    sounds.scarymusic.stop();
+
     bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
@@ -720,9 +686,6 @@ function endScreen() {
 function winScreen() {
     // Simple win screen showing final total and restart prompt.
     background(20, 120, 20, 200);
-    image(superhellimage, 0, 0, width, height);
-    image(thedevilimage, 3, 250, 250, 250);
-    image(freedom, 150, 405, 75, 75);
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -741,7 +704,7 @@ function winScreen() {
     pop();
     //sounds.laughing.play();
 
-    sounds.scarymusic.stop();
+
     bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();

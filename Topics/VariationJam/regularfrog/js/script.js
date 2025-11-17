@@ -43,8 +43,8 @@ let timerActive = false;
 const TARGET_FLIES = 30;
 
 let score = 0;
-let scoree = 0;
-let scoreee = 0;
+//let scoree = 0;
+//let scoreee = 0;
 
 // Frog color interpolation: start (green) -> end (grey)
 let frogColorStart;
@@ -94,7 +94,7 @@ const frog = {
         state: "idle" // State can be: idle, outbound, inbound
     }
 };
-
+let flys = [];
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
@@ -165,6 +165,8 @@ function preload() {
 function setup() {
     createCanvas(640, 480);
 
+
+
     // Start (green) and end (grey) colors for the frog
     frogColorStart = color("#09ff00ff");
     frogColorGrey = color("#909090ff");
@@ -227,7 +229,7 @@ function draw() {
         }
 
         // Check win condition (total flies eaten)
-        const totalEaten = score + scoree + scoreee;
+        const totalEaten = score //+ scoree + scoreee;
         if (totalEaten >= TARGET_FLIES) {
             // Player wins
             timerActive = false;
@@ -451,7 +453,7 @@ function moveTongue() {
     else if (frog.tongue.state === "outbound") {
         frog.tongue.tipy += -frog.tongue.speed;
         // The tongue bounces back if it hits the top
-        if (frog.tongue.tipy <= 0) {
+        if (frog.tongue.tipy <= mouseY) {
             frog.tongue.state = "inbound";
         }
     }
@@ -682,7 +684,7 @@ function endScreen() {
     textSize(48);
     text("Game Over", width / 2, height / 2 - 50);
     textSize(24);
-    let combined = "Scores: " + score + " / " + scoree + " / " + scoreee;
+    let combined = "Scores: " + score //+ " / " + scoree + " / " + scoreee;
     text(combined, width / 2, height / 2);
     textSize(18);
     text("Press any key to restart", width / 2, height / 2 + 50);
@@ -708,7 +710,7 @@ function winScreen() {
     text("'You Win!'", width / 2, height / 5 - 60);
 
     textSize(28);
-    const total = score + scoree + scoreee;
+    const total = score //+ scoree + scoreee;
     text("Flies eaten: " + total + " / " + TARGET_FLIES, width / 2, height / 1.5 + 60);
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);

@@ -1,24 +1,32 @@
-/**
- * Title of Project
- * Author Name
- * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
- */
+let whatscreen = "start"
 
-"use strict";
+let spyimage = undefined;
+let knifeimage = undefined;
+let earnerimage = undefined;
+let rewardimage = undefined;
+let goldimage = undefined
+let kunaiimage = undefined
 
-/**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
-function setup() {
+let chitarra_romana;
+let happyday;
+let lavie;
 
+function preload() {
+
+    sounds.chitarra_romana = loadSound("assets/sounds/Chitarra_Romana.mp3");
+    sounds.happyday = loadSound("assets/sounds/HappyDay_InParis.mp3");
+    sounds.lavie = loadSound("assets/sounds/LaVie_EnRose.mp3");
+
+
+
+    spyimage = loadImage("assets/images/spy.png");
+    knifeimage = loadImage("assets/images/knife.png");
+    kunaiimage = loadImage("assets/images/knife.png");
+    earnerimage = loadImage("assets/images/bigearner.png");
+    rewardimage = loadImage("assets/images/eternalreward.png");
+    goldimage = loadImage("assets/images/australiumknife.png");
 }
 
-
-/**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
-function draw() {
-
+function setup() {
+    createCanvas(640, 480);
 }

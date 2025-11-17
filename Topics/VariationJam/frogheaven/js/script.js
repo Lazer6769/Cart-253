@@ -22,11 +22,12 @@ let flyimage = undefined;
 let mosquitoimage = undefined;
 let heavenstairsimage = undefined
 let heavenlyskyimage = undefined
+let heavengateimage = undefined
 // gifs that represent the frog 
 
 let bgisplaying = false;
 // Game timer (seconds)
-const GAME_DURATION = 10; // default 60 seconds
+const GAME_DURATION = 60; // default 60 seconds
 let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
@@ -34,8 +35,8 @@ let timerActive = false;
 const TARGET_FLIES = 30;
 
 let score = 0;
-let scoree = 0;
-let scoreee = 0;
+//let scoree = 0;
+//let scoreee = 0;
 
 // Frog color interpolation: start (green) -> end (grey)
 let frogColorStart;
@@ -122,6 +123,7 @@ const sounds = {
     gulp: undefined,
     slurp: undefined,
     beebuzzing: undefined,
+    heaven: undefined,
 
 
 };
@@ -132,27 +134,25 @@ function preload() {
 
 
     sounds.buzzing = loadSound("assets/sounds/mosquito.mp3");
-    sounds.buzzing.setVolume(1.5)
+    sounds.buzzing.setVolume(1)
     sounds.beebuzzing = loadSound("assets/sounds/beebuzzing.mp3");
-    sounds.beebuzzing.setVolume(1.5)
-
-
-
-
-
-
+    sounds.beebuzzing.setVolume(1)
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
     sounds.slurp.setVolume(8)
     sounds.gulp = loadSound("assets/sounds/gulp-with-bubble.mp3");
     sounds.gulp.setVolume(6)
+    sounds.heaven = loadSound("assets/sounds/heavenly_music.mp3")
+    sounds.heaven.setVolume(3)
+
 
 
 
     beeimage = loadImage("assets/images/bee.png")
     flyimage = loadImage("assets/images/cartoonfly.png")
     mosquitoimage = loadImage("assets/images/mosquito.png")
-    // heavenstairsimage = loadImage("assets/images/heavenstairs.png")
-    // heavenlyskyimage = loadImage("assets/images/heaven.png")
+    heavenstairsimage = loadImage("assets/images/heavenstairs.png")
+    heavenlyskyimage = loadImage("assets/images/heaven.png")
+    heavengateimage = loadImage("assets/images/heavengate.png")
 
 
 
@@ -172,7 +172,7 @@ function setup() {
     // Give the fly its first random position
     resetFly();
     //resetgameTime();
-
+    sounds.heaven.loop();
     // sounds.buzzing.loop();
     // sounds.beebuzzing.loop();
     // sounds.scarymusic.loop();
@@ -182,7 +182,8 @@ function draw() {
 
     // Only run the main game update/draw when we're in the game state.
     if (whatscreen === "game") {
-        background("#662222ff");
+
+        background("#aca8a8ff");
         moveFly();
         drawFly();
         //moveirregularfly();
@@ -223,7 +224,7 @@ function draw() {
         }
 
         // Check win condition (total flies eaten)
-        const totalEaten = score + scoree + scoreee;
+        const totalEaten = score //+ scoree + scoreee;
         if (totalEaten >= TARGET_FLIES) {
             // Player wins
             timerActive = false;
@@ -257,7 +258,7 @@ function draw() {
 
 function startScreen() {
     background("#000000d3");
-
+    image(heavenstairsimage, 0, 0, width, height);
     //startscreen allowing you to press the key before starting the game 
     fill(255)
     textSize(20);
@@ -271,7 +272,7 @@ function startScreen() {
 
 function instructionsScreen() {
     background("#000000d3");
-
+    image(heavengateimage, 0, 0, width, height);
     //instructionsScreen allowing you to press the key before starting the game 
     fill(255, 203, 80)
     textSize(20);
@@ -528,7 +529,6 @@ function checkTongueFlyOverlap() {
     const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         sounds.gulp.play();
-        sounds.scream.play();
         score++;
         // Reset the fly
         resetFly();
@@ -667,7 +667,7 @@ function endScreen() {
     textSize(48);
     text("Game Over", width / 2, height / 2 - 50);
     textSize(24);
-    let combined = "Scores: " + score + " / " + scoree + " / " + scoreee;
+    let combined = "Scores: " + score// + " / " + scoree + " / " + scoreee;
     text(combined, width / 2, height / 2);
     textSize(18);
     text("Press any key to restart", width / 2, height / 2 + 50);
@@ -697,7 +697,7 @@ function winScreen() {
     text('you are going to super hell for eternity', width / 2, height / 3 + 80);
 
     textSize(28);
-    const total = score + scoree + scoreee;
+    const total = score //+ scoree + scoreee;
     text("Flies eaten: " + total + " / " + TARGET_FLIES, width / 2, height / 1.5 + 60);
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);

@@ -17,6 +17,11 @@
 //frog on top of lily pad 
 // fly moving up down and left right
 // also drawing the background sceneray
+// array's 
+//the tongue isnt on the floor 
+
+//we got the array for multiple flies, we got pumpkin to work, lily pad image working, after today put all you did today into the heave one 
+//also we figure out the issue with the image being the game background image(hellgateimage, 0, 0, width, height); just put it 
 "use strict";
 let whatscreen = "start"
 // images for backgrounds and sprites
@@ -40,7 +45,7 @@ let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
 // Win condition: total flies to eat
-const TARGET_FLIES = 30;
+const TARGET_FLIES = 300;
 
 let score = 0;
 //let scoree = 0;
@@ -87,7 +92,7 @@ const frog = {
         x: undefined,
         y: 250,
         tipx: undefined,
-        tipy: 480,
+        tipy: 250,
         size: 30,
         speed: 20,
         // Determines how the tongue moves each frame
@@ -104,6 +109,17 @@ const fly = {
     speedx: 3,
     speedy: 0
 };
+
+const flythesecond = {
+    x: 1,
+    y: 250,
+    size: 30,
+    speedx: 4,
+    speedy: 0
+};
+
+flys.push(fly);
+flys.push(flythesecond);
 // irregular fly
 // has a position size and speed of horizontal movement
 /*
@@ -164,21 +180,37 @@ function preload() {
  */
 function setup() {
     createCanvas(640, 480);
-
-
-
     // Start (green) and end (grey) colors for the frog
     frogColorStart = color("#09ff00ff");
     frogColorGrey = color("#909090ff");
     frogCurrentColor = frogColorStart;
 
     // Give the fly its first random position
-    resetFly();
+
+    for (let fly of flys) {
+        resetFly(fly);
+    }
+
     //resetgameTime();
 
     // sounds.buzzing.loop();
     // sounds.beebuzzing.loop();
     // sounds.scarymusic.loop();
+
+}
+
+
+
+function createFly() {
+    const newFlys = {
+        x: random(1, 640),
+        y: random(1, 400), // Will be random
+        size: 20,
+        speedx: 3,
+        speedy: 0
+
+    }
+    return newFlys;
 }
 
 function draw() {
@@ -186,22 +218,30 @@ function draw() {
     // Only run the main game update/draw when we're in the game state.
     if (whatscreen === "game") {
         background("#033487ff");
-        moveFly();
-        drawFly();
+
+        flys.push(createFly());
+
+
+        for (let fly of flys) {
+            drawFly(fly);
+            moveFly(fly);
+            checkTongueFlyOverlap(fly);
+        }
         //moveirregularfly();
         //drawirregularfly();
         //moveslowfly();
         //drawslowfly();
+        drawLilypad();
         moveFrog();
         moveTongue();
         drawFrog();
-        checkTongueFlyOverlap();
+
         //checkTongueirregularflyOverlap();
         //checkTongueslowflyOverlap();
         drawScore();
         //drawScoree();
         //drawScoreee();
-        // drawLilypad();
+
 
 
 
@@ -323,22 +363,27 @@ function drawScoreee() {
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
  */
-function moveFly() {
+
+
+function moveFly(thefly) {
     // Move the fly
 
-    fly.x += fly.speedx;
-    fly.speedx = random(-3, 15);
-    fly.x = constrain(fly.x, 0, width);
-    fly.speedy = random(-20, 10);
-    fly.y = constrain(fly.y, 50, 150);
-    fly.y += fly.speedy;
+    thefly.x += thefly.speedx;
+    thefly.speedx = random(-15, 15);
+    thefly.x = constrain(thefly.x, 0, width);
+    thefly.speedy = random(-20, 20);
+    thefly.y = constrain(thefly.y, 50, 400);
+    thefly.y += thefly.speedy;
 
     //console.log(fly.y);
     // Handle the fly going off the canvas
-    if (fly.x >= width) {
-        resetFly();
-    }
+    /*
+     if (thefly.x >= width) {
+         resetFly(thefly);
+     }
+         */
 }
+
 /*
 function moveirregularfly() {
     // Move the fly
@@ -377,11 +422,11 @@ function moveslowfly() {
 /**
  * Draws the fly as a black circle
  */
-function drawFly() {
+function drawFly(thefly) {
     push();
     noStroke();
     fill("#000000");
-    image(flyimage, fly.x, fly.y, fly.size, fly.size);
+    image(flyimage, thefly.x, thefly.y, thefly.size, thefly.size);
     pop();
     //console.log(fly.x, fly.y, fly.speedx, fly.speedy);
 }
@@ -407,10 +452,13 @@ function drawslowfly() {
 /**
  * Resets the fly to the left with a random y
  */
-function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
+function resetFly(thefly) {
+    thefly.x = 0;
+    thefly.y = random(0, 300);
 }
+
+
+
 /*
 function resetirregularfly() {
     irregularfly.x = 0;
@@ -471,11 +519,11 @@ function moveTongue() {
  * Displays the tongue (tip and line connection) and the frog (body)
  */
 
-/*
+
 function drawLilypad() {
-    image(lilypadimage, 250, 200, 150, 100);
+    image(lilypadimage, 200, 150, 250, 200);
 }
-*/
+
 
 function drawFrog() {
     // Draw the tongue tip
@@ -529,26 +577,26 @@ function drawFrog() {
 /**
  * Handles the tongue overlapping the fly
  */
-function checkTongueFlyOverlap() {
+function checkTongueFlyOverlap(thefly) {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.tipx, frog.tongue.tipy, fly.x, fly.y);
+    const d = dist(frog.tongue.tipx, frog.tongue.tipy, thefly.x, thefly.y);
     const close = (d < 50);
     if (close) {
-        fly.y += 50
+        thefly.y += 50
     }
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+    const eaten = (d < frog.tongue.size / 2 + thefly.size / 2);
     if (eaten) {
         sounds.gulp.play();
 
         score++;
         // Reset the fly
-        resetFly();
+        resetFly(thefly);
         // Reset the game timer when a fly is eaten
         timerRemaining = GAME_DURATION;
         timerActive = true;
         // Bring back the tongue
-        frog.tongue.state = "inbound";
+        //frog.tongue.state = "inbound";
     }
 }
 
@@ -635,7 +683,7 @@ function keyPressed() {
         timerRemaining = GAME_DURATION;
         timerActive = true;
         sounds.buzzing.loop();
-        sounds.beebuzzing.loop();
+        //sounds.beebuzzing.loop();
         //sounds.scarymusic.loop();
     } else if (whatscreen === "game") {
         // no-op for now
@@ -646,7 +694,10 @@ function keyPressed() {
         timerRemaining = GAME_DURATION;
         timerActive = false;
         // reset flies/scores if you want a fresh start
-        resetFly();
+
+        for (let fly of flys) {
+            resetFly(fly);
+        }
         score = 0;
         /*
         resetirregularfly();
@@ -662,7 +713,10 @@ function keyPressed() {
         whatscreen = "start";
         timerRemaining = GAME_DURATION;
         timerActive = false;
-        resetFly();
+        for (let fly of flys) {
+            resetFly(fly);
+        }
+
         score = 0;
         /*
         resetirregularfly();

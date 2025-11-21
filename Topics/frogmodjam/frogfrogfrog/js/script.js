@@ -209,6 +209,7 @@ function draw() {
     // Only run the main game update/draw when we're in the game state.
     if (whatscreen === "game") {
         background("#662222ff");
+        //image(hellgateimage, 0, 0, width, height);
         moveFly();
         drawFly();
         moveirregularfly();

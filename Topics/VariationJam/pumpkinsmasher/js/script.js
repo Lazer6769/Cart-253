@@ -1,14 +1,24 @@
 let whatscreen = "start"
 
-let pumpkinimage = undefined
+let pumpkinimage = undefined;
+let batimage = undefined;
+let jackoLanternimage = undefined;
+let pumpkinbackgroundimage = undefined;
+let streetimage = undefined;
 
 const sounds = {
-    pumpkinnoise: undefined
+    pumpkinnoise: undefined,
+    pumpkinsplat: undefined,
 }
 function preload() {
     sounds.pumpkinnoise = loadSound("assets/sounds/pumpkin-meme.mp3");
+    sounds.pumpkinsplat = loadSound("assets/sounds/lancer-splat.mp3");
 
     pumpkinimage = loadImage("assets/images/Pumpkin.png");
+    batimage = loadImage("assets/images/bat.png");
+    jackoLanternimage = loadImage("assets/images/jackolantern.png");
+    pumpkinbackgroundimage = loadImage("assets/images/PUMPKINbackground.png");
+    streetimage = loadImage("assets/images/halloweenstreet.png");
 }
 
 const frog = {
@@ -47,7 +57,7 @@ const frog = {
         y: 580,
         tipx: undefined,
         tipy: 480,
-        size: 30,
+        size: 50,
         speed: 20,
         // Determines how the tongue moves each frame
         state: "idle" // State can be: idle, outbound, inbound
@@ -96,19 +106,84 @@ function createPumpkin() {
 
 
 function draw() {
-    if (whatscreen === "game") { }
+    if (whatscreen === "game") {
 
 
-    background("#ddeeff");
-    moveFrog();
-    drawFrog();
-    moveTongue();
+        background("#ddeeff");
+        image(streetimage, 0, 0, width, height);
+        moveFrog();
+        drawFrog();
+        moveTongue();
 
 
-    for (let pumpkin of pumpkins) {
-        movePumpkin(pumpkin);
-        drawPumpkin(pumpkin);
-        checkTonguePumpkinOverlap(pumpkin);
+        for (let pumpkin of pumpkins) {
+            movePumpkin(pumpkin);
+            drawPumpkin(pumpkin);
+            checkTonguePumpkinOverlap(pumpkin);
+        }
+
+    } else {
+        // If not in game, show the appropriate screen overlay.
+        if (whatscreen === "start") {
+            startScreen();
+        } else if (whatscreen === "instructions") {
+            instructionsScreen();
+        } else if (whatscreen === "win") {
+            winScreen();
+        } else if (whatscreen === "end") {
+            endScreen();
+        }
+    }
+
+
+}
+
+function startScreen() {
+    background("#532222d3");
+    image(jackoLanternimage, 0, 0, width, height);
+    //startscreen allowing you to press the key before starting the game 
+    fill(255)
+    textSize(20);
+    text("Press with a key to start", 205, 400)
+    textSize(50);
+    text(BOLD)
+    text("Fly Demise", 200, 200)
+
+}
+
+
+function instructionsScreen() {
+    background("#532222d3");
+    image(pumpkinbackgroundimage, 0, 0, width, height);
+    //instructionsScreen allowing you to press the key before starting the game 
+    fill(255, 203, 80)
+    textSize(20);
+    text("Press with a key to start", 200, 440)
+    text(10)
+    text("- All your life you have been a malicious frog", 45, 160)
+    text("- breaking the 10 frogments has cursed your soul", 45, 180)
+    text("- to eternal damnnation in hell", 45, 200)
+    text("- however you are aproached by the devil himself", 45, 220)
+    text("- he offers you a deal to resurrect into a new life", 45, 240)
+    text("- catch 30 fly souls to earn your freedom", 45, 260)
+    text("- and escape from this nightmare ", 45, 280)
+    text("- use the Mouse to Move tongue", 45, 320)
+    text("- Click Mouse 1 to Launch tongue", 45, 340)
+    textSize(75);
+    text(BOLD)
+    text("Instructions", 125, 100)
+}
+
+function keyPressed() {
+    // p5 calls keyPressed() when any key is pressed in global mode.
+    if (whatscreen === "start") {
+        whatscreen = "instructions";
+    } else if (whatscreen === "instructions") {
+        whatscreen = "game";
+        // Start/restart the game timer
+        //sounds.scarymusic.loop();
+    } else if (whatscreen === "game") {
+        // no-op for now
     }
 }
 
@@ -186,17 +261,19 @@ function moveTongue() {
 
 function drawFrog() {
     // Draw the tongue tip
+
     push();
     fill("#000000ff");
     noStroke();
     ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
     pop();
 
+
     // Draw the rest of the tongue
     push();
     stroke("#b869a0ff");
-    strokeWeight(frog.tongue.size);
-    line(frog.tongue.tipx, frog.tongue.tipy, frog.tongue.x, frog.tongue.y);
+    //strokeWeight(frog.tongue.size);
+    image(batimage, frog.tongue.tipx, frog.tongue.tipy, frog.tongue.x, frog.tongue.y, frog.tongue.size);
     pop();
 
     // Draw the frog's body using the interpolated current color
@@ -239,6 +316,7 @@ function checkTonguePumpkinOverlap(pumpkin) {
     const eaten = (d < frog.tongue.size / 2 + pumpkin.sizex / 2);
     if (eaten) {
         sounds.pumpkinnoise.play();
+        sounds.pumpkinsplat.play();
         pumpkins.splice(pumpkins.indexOf(pumpkin), 1)
 
 

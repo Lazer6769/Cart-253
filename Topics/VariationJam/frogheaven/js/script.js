@@ -32,7 +32,7 @@ let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
 // Win condition: total flies to eat
-const TARGET_FLIES = 30;
+const TARGET_FLIES = 5000;
 
 let score = 0;
 //let scoree = 0;
@@ -86,7 +86,7 @@ const frog = {
         state: "idle" // State can be: idle, outbound, inbound
     }
 };
-
+let flys = [];
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
@@ -96,6 +96,18 @@ const fly = {
     speedx: 3,
     speedy: 0
 };
+
+const flythesecond = {
+    x: 1,
+    y: 250,
+    size: 30,
+    speedx: 4,
+    speedy: 0
+};
+
+flys.push(fly);
+flys.push(flythesecond);
+
 // irregular fly
 // has a position size and speed of horizontal movement
 /*
@@ -169,8 +181,13 @@ function setup() {
     frogColorGrey = color("#909090ff");
     frogCurrentColor = frogColorStart;
 
+    for (let fly of flys) {
+        resetFly(fly);
+    }
+
+
     // Give the fly its first random position
-    resetFly();
+    //resetFly();
     //resetgameTime();
     sounds.heaven.loop();
     // sounds.buzzing.loop();
@@ -178,14 +195,36 @@ function setup() {
     // sounds.scarymusic.loop();
 }
 
+function createFly() {
+    const newFlys = {
+        x: random(1, 640),
+        y: random(1, 400), // Will be random
+        size: 20,
+        speedx: 3,
+        speedy: 0
+
+    }
+    return newFlys;
+}
+
 function draw() {
 
     // Only run the main game update/draw when we're in the game state.
     if (whatscreen === "game") {
-
         background("#aca8a8ff");
-        moveFly();
-        drawFly();
+        image(heavenlyskyimage, 0, 0, width, height);
+
+        flys.push(createFly());
+
+
+        for (let fly of flys) {
+            drawFly(fly);
+            moveFly(fly);
+            checkTongueFlyOverlap(fly);
+        }
+
+        // moveFly();
+        // drawFly();
         //moveirregularfly();
         //drawirregularfly();
         //moveslowfly();
@@ -193,7 +232,7 @@ function draw() {
         moveFrog();
         moveTongue();
         drawFrog();
-        checkTongueFlyOverlap();
+        // checkTongueFlyOverlap();
         //checkTongueirregularflyOverlap();
         //checkTongueslowflyOverlap();
         drawScore();
@@ -320,21 +359,21 @@ function drawScoreee() {
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
  */
-function moveFly() {
+function moveFly(thefly) {
     // Move the fly
 
-    fly.x += fly.speedx;
-    fly.speedx = random(-3, 15);
-    fly.x = constrain(fly.x, 0, width);
-    fly.speedy = random(-20, 10);
-    fly.y = constrain(fly.y, 50, 150);
-    fly.y += fly.speedy;
+    thefly.x += thefly.speedx;
+    thefly.speedx = random(-15, 15);
+    thefly.x = constrain(thefly.x, 0, width);
+    thefly.speedy = random(-20, 20);
+    thefly.y = constrain(thefly.y, 50, 400);
+    thefly.y += thefly.speedy;
 
     //console.log(fly.y);
     // Handle the fly going off the canvas
-    if (fly.x >= width) {
-        resetFly();
-    }
+    // if (fly.x >= width) {
+    //     resetFly();
+    // }
 }
 /*
 function moveirregularfly() {
@@ -374,11 +413,11 @@ function moveslowfly() {
 /**
  * Draws the fly as a black circle
  */
-function drawFly() {
+function drawFly(thefly) {
     push();
     noStroke();
     fill("#000000");
-    image(flyimage, fly.x, fly.y, fly.size, fly.size);
+    image(flyimage, thefly.x, thefly.y, thefly.size, thefly.size);
     pop();
     //console.log(fly.x, fly.y, fly.speedx, fly.speedy);
 }
@@ -403,10 +442,11 @@ function drawslowfly() {
 /**
  * Resets the fly to the left with a random y
  */
-function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
+function resetFly(thefly) {
+    thefly.x = 0;
+    thefly.y = random(0, 300);
 }
+
 /*
 function resetirregularfly() {
     irregularfly.x = 0;
@@ -518,25 +558,26 @@ function drawFrog() {
 /**
  * Handles the tongue overlapping the fly
  */
-function checkTongueFlyOverlap() {
+function checkTongueFlyOverlap(thefly) {
     // Get distance from tongue to fly
-    const d = dist(frog.tongue.tipx, frog.tongue.tipy, fly.x, fly.y);
+    const d = dist(frog.tongue.tipx, frog.tongue.tipy, thefly.x, thefly.y);
     const close = (d < 50);
     if (close) {
-        fly.y += 50
+        thefly.y += 50
     }
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+    const eaten = (d < frog.tongue.size / 2 + thefly.size / 2);
     if (eaten) {
         sounds.gulp.play();
+
         score++;
         // Reset the fly
-        resetFly();
+        resetFly(thefly);
         // Reset the game timer when a fly is eaten
         timerRemaining = GAME_DURATION;
         timerActive = true;
         // Bring back the tongue
-        frog.tongue.state = "inbound";
+        //frog.tongue.state = "inbound";
     }
 }
 /* 
@@ -634,10 +675,12 @@ function keyPressed() {
         timerRemaining = GAME_DURATION;
         timerActive = false;
         // reset flies/scores if you want a fresh start
-        resetFly();
-        resetirregularfly();
-        resetslowfly();
+        for (let fly of flys) {
+            resetFly(fly);
+        }
         score = 0;
+        // resetirregularfly();
+        // resetslowfly();
         //scoree = 0;
         //scoreee = 0;
     }
@@ -647,10 +690,14 @@ function keyPressed() {
         whatscreen = "start";
         timerRemaining = GAME_DURATION;
         timerActive = false;
-        resetFly();
-        resetirregularfly();
-        resetslowfly();
+        for (let fly of flys) {
+            resetFly(fly);
+        }
+
         score = 0;
+        // resetirregularfly();
+        //resetslowfly();
+
         //scoree = 0;
         //scoreee = 0;
     }

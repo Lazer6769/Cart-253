@@ -29,16 +29,23 @@ let beeimage = undefined;
 let flyimage = undefined;
 let mosquitoimage = undefined;
 let lilypadimage = undefined;
+let froggyimage = undefined;
+let smallfroggyimage = undefined;
+let simplefrogimage = undefined;
+let bigfrogimage = undefined;
+let swampimage = undefined;
+let swampbackgroundimage = undefined;
 
+let fullyfroggy;
 /*
-// gifs that represent the frog 
+// gifs that represent the frog's emotions
 let cry;
 let screaming;
 let trapped;
 let freedom;
 */
 
-let bgisplaying = false;
+//let bgisplaying = false;
 // Game timer (seconds)
 const GAME_DURATION = 60; // default 60 seconds
 let timerRemaining = GAME_DURATION;
@@ -146,6 +153,9 @@ const sounds = {
     gulp: undefined,
     slurp: undefined,
     beebuzzing: undefined,
+    daytimeswamp: undefined,
+    countryswamp: undefined,
+    swampwoods: undefined,
 
 };
 
@@ -155,23 +165,31 @@ function preload() {
 
 
     sounds.buzzing = loadSound("assets/sounds/mosquito.mp3");
-    sounds.buzzing.setVolume(1.5)
+    sounds.buzzing.setVolume(1)
     sounds.beebuzzing = loadSound("assets/sounds/beebuzzing.mp3");
-    sounds.beebuzzing.setVolume(1.5)
+    sounds.beebuzzing.setVolume(1)
 
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
     sounds.slurp.setVolume(8)
     sounds.gulp = loadSound("assets/sounds/gulp-with-bubble.mp3");
     sounds.gulp.setVolume(6)
 
-
+    sounds.daytimeswamp = loadSound("assets/sounds/daytime-swamp-ambience.mp3");
+    sounds.countryswamp = loadSound("assets/sounds/countryside-swamp.mp3");
+    sounds.swampwoods = loadSound("assets/sounds/swamp-woods.mp3");
 
     beeimage = loadImage("assets/images/bee.png")
     flyimage = loadImage("assets/images/cartoonfly.png")
     mosquitoimage = loadImage("assets/images/mosquito.png")
     lilypadimage = loadImage("assets/images/Lilypad.png")
+    froggyimage = loadImage("assets/images/froggy.png")
+    smallfroggyimage = loadImage("assets/images/small_frog.png")
+    simplefrogimage = loadImage("assets/images/simplefrog.png")
+    bigfrogimage = loadImage("assets/images/bigfrog.png")
+    swampbackgroundimage = loadImage("assets/images/louisiana-swamp.png")
+    swampimage = loadImage("assets/images/swamp.png")
 
-
+    fullyfroggy = loadImage("assets/images/fullfrog.gif")
 
 }
 
@@ -265,7 +283,7 @@ function draw() {
         if (progress >= 1) {
             timerActive = false;
             whatscreen = "end";
-            sounds.flap.play();
+
         }
 
         // Check win condition (total flies eaten)
@@ -274,7 +292,7 @@ function draw() {
             // Player wins
             timerActive = false;
             whatscreen = "win";
-            sounds.laughing.play();
+
         }
 
         // Display timer at top-left
@@ -303,6 +321,7 @@ function draw() {
 
 function startScreen() {
     background("#0c60b4d3");
+    image(swampbackgroundimage, 0, 0, width, height);
     //startscreen allowing you to press the key before starting the game 
     fill(255)
     textSize(20);
@@ -316,6 +335,7 @@ function startScreen() {
 
 function instructionsScreen() {
     background("#0a1f7cd3");
+    image(swampimage, 0, 0, width, height);
     //instructionsScreen allowing you to press the key before starting the game 
     fill(255, 203, 80)
     textSize(20);
@@ -670,10 +690,10 @@ function mousePressed() {
 
 
 function keyPressed() {
-    if (!bgisplaying) {
+    // if (!bgisplaying) {
 
-        bgisplaying = true;
-    }
+    //     bgisplaying = true;
+    // }
     // p5 calls keyPressed() when any key is pressed in global mode.
     if (whatscreen === "start") {
         whatscreen = "instructions";
@@ -731,7 +751,8 @@ function keyPressed() {
 
 function endScreen() {
     // Simple end screen showing final scores and restart prompt.
-    background("255,0,255");
+    background("#0c60b4d3");
+    image(flyimage, 0, 0, width, height);
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -748,7 +769,7 @@ function endScreen() {
 
 
 
-    bgisplaying = false;
+    //bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
 
@@ -756,7 +777,8 @@ function endScreen() {
 
 function winScreen() {
     // Simple win screen showing final total and restart prompt.
-    background(255, 0, 255);
+    background("#0c60b4d3");
+    image(fullyfroggy, 0, 0, width, height);
     push();
     textAlign(CENTER, CENTER);
     fill(255);
@@ -769,10 +791,11 @@ function winScreen() {
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
+
     //sounds.laughing.play();
 
 
-    bgisplaying = false;
+    //bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
 

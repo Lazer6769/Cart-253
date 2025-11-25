@@ -16,6 +16,7 @@ function preload() {
 
     pumpkinimage = loadImage("assets/images/Pumpkin.png");
     batimage = loadImage("assets/images/bat.png");
+
     jackoLanternimage = loadImage("assets/images/jackolantern.png");
     pumpkinbackgroundimage = loadImage("assets/images/PUMPKINbackground.png");
     streetimage = loadImage("assets/images/halloweenstreet.png");
@@ -73,6 +74,7 @@ let pumpkinDelay = maximumPumpkinDelay
 function setup() {
     createCanvas(600, 600);
 
+    batimage.resize(50, 0);
     setTimeout(addPumpkin, pumpkinDelay);
 }
 
@@ -160,13 +162,6 @@ function instructionsScreen() {
     textSize(20);
     text("Press with a key to start", 200, 440)
     text(10)
-    text("- All your life you have been a malicious frog", 45, 160)
-    text("- breaking the 10 frogments has cursed your soul", 45, 180)
-    text("- to eternal damnnation in hell", 45, 200)
-    text("- however you are aproached by the devil himself", 45, 220)
-    text("- he offers you a deal to resurrect into a new life", 45, 240)
-    text("- catch 30 fly souls to earn your freedom", 45, 260)
-    text("- and escape from this nightmare ", 45, 280)
     text("- use the Mouse to Move tongue", 45, 320)
     text("- Click Mouse 1 to Launch tongue", 45, 340)
     textSize(75);
@@ -273,7 +268,13 @@ function drawFrog() {
     push();
     stroke("#b869a0ff");
     //strokeWeight(frog.tongue.size);
-    image(batimage, frog.tongue.tipx, frog.tongue.tipy, frog.tongue.x, frog.tongue.y, frog.tongue.size);
+
+    imageMode(CENTER);
+    // translate(width / 2 - 200, height / 2 - 200);
+    let axis = createVector(0, 1, 0);
+    //rotate(frameCount * 0.01);
+
+    image(batimage, frog.tongue.tipx, frog.tongue.tipy);
     pop();
 
     // Draw the frog's body using the interpolated current color
@@ -314,7 +315,8 @@ function checkTonguePumpkinOverlap(pumpkin) {
     const d = dist(frog.tongue.tipx, frog.tongue.tipy, pumpkin.x, pumpkin.y);
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + pumpkin.sizex / 2);
-    if (eaten) {
+    if (eaten && frog.tongue.state === "outbound") {
+
         sounds.pumpkinnoise.play();
         sounds.pumpkinsplat.play();
         pumpkins.splice(pumpkins.indexOf(pumpkin), 1)

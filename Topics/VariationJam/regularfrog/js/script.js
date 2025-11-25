@@ -98,7 +98,9 @@ const frog = {
     tongue: {
         x: undefined,
         y: 250,
-        tipx: undefined,
+        directionX: undefined,
+        directionY: undefined,
+        tipx: 250,
         tipy: 250,
         size: 30,
         speed: 20,
@@ -503,7 +505,10 @@ function moveFrog() {
       frog.Pupil1.x = frog.body.x - pupilOffsetX;
       frog.Pupil2.x = frog.body.x + pupilOffsetX;
       */
-    frog.tongue.tipx = mouseX
+
+    // tongue direction radially around frog
+    frog.tongue.directionX = mouseX;
+    frog.tongue.directionY = mouseY;
 }
 
 
@@ -511,26 +516,59 @@ function moveFrog() {
  * Handles moving the tongue based on its state
  */
 function moveTongue() {
-    // Tongue matches the frog's x
+    // idle position of tongue is at frog's mouth
+    frog.tongue.y = frog.body.y;
     frog.tongue.x = frog.body.x;
+    console.log(frog.tongue.state);
+
+
     // If the tongue is idle, it doesn't do anything
     if (frog.tongue.state === "idle") {
         // Do nothing
     }
     // If the tongue is outbound, it moves up
     else if (frog.tongue.state === "outbound") {
-        frog.tongue.tipy += -frog.tongue.speed;
-        // The tongue bounces back if it hits the top
-        if (frog.tongue.tipy <= mouseY) {
+        console.log(frog.tongue.directionX, frog.tongue.directionY);
+        console.log(frog.tongue.tipx, frog.tongue.tipy);
+        if (frog.tongue.tipx < frog.tongue.directionX) {
+            frog.tongue.tipx += frog.tongue.speed;
+        }
+        if (frog.tongue.tipx > frog.tongue.directionX) {
+            frog.tongue.tipx -= frog.tongue.speed;
+        }
+        if (frog.tongue.tipy < frog.tongue.directionY) {
+            frog.tongue.tipy += frog.tongue.speed;
+        }
+        if (frog.tongue.tipy > frog.tongue.directionY) {
+            frog.tongue.tipy -= frog.tongue.speed;
+        }
+        // The tongue bounces back if it hits the destination
+        if (frog.tongue.tipy <= frog.tongue.directionY + 10 && frog.tongue.tipy >= frog.tongue.directionY - 10 &&
+            frog.tongue.tipx <= frog.tongue.directionX + 10 && frog.tongue.tipx >= frog.tongue.directionX - 10) {
             frog.tongue.state = "inbound";
         }
     }
-    // If the tongue is inbound, it moves down
+    // If the tongue is inbound, it moves closer to the frog
     else if (frog.tongue.state === "inbound") {
-        frog.tongue.tipy += frog.tongue.speed;
-        // The tongue stops if it hits the bottom
-        if (frog.tongue.tipy >= height) {
+        if (frog.tongue.tipx < frog.body.x) {
+            frog.tongue.tipx += frog.tongue.speed;
+        }
+        if (frog.tongue.tipx > frog.body.x) {
+            frog.tongue.tipx -= frog.tongue.speed;
+        }
+        if (frog.tongue.tipy < frog.body.y) {
+            frog.tongue.tipy += frog.tongue.speed;
+        }
+        if (frog.tongue.tipy > frog.body.y) {
+            frog.tongue.tipy -= frog.tongue.speed;
+        }
+
+        // The tongue stops if it hits the frog
+        if (frog.tongue.tipy <= frog.body.y + 10 && frog.tongue.tipy >= frog.body.y - 10 &&
+            frog.tongue.tipx <= frog.body.x + 10 && frog.tongue.tipx >= frog.body.x - 10) {
             frog.tongue.state = "idle";
+            frog.tongue.tipx = frog.body.x;
+            frog.tongue.tipy = frog.body.y;
         }
     }
 }

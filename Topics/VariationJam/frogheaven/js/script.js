@@ -304,7 +304,7 @@ function startScreen() {
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
-    text("Fly Demise", 200, 200)
+    text("Fly Heaven", 200, 200)
 
 }
 
@@ -737,11 +737,12 @@ function winScreen() {
     textAlign(CENTER, CENTER);
     fill(255);
     textSize(56);
-    text("'You Win!'", width / 2, height / 5 - 60);
+    text("YOU WIN!", width / 2, height / 5 - 60);
     textSize(32);
-    text("you reall thought you could escape hell?", width / 2, height / 3);
-    text("how foolish can you be?", width / 2, height / 3 + 40);
-    text('you are going to super hell for eternity', width / 2, height / 3 + 80);
+    text("you've had quite the journey in your life", width / 2, height / 3);
+    text("as you've spent your life surviving and thriving", width / 2, height / 3 + 40);
+    text('And now have experiecned heavens wonders and joy', width / 2, height / 3 + 80);
+    text('It is time for you to go back', width / 2, height / 3 + 120);
 
     textSize(28);
     const total = score //+ scoree + scoreee;

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ChainsawMan series</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Meta description for SEO-->
+
+    <meta name="description" content="Chainsaw Man series.">
+
+    <!--open graph fro social sharing-->
+
+    <meta property="og:title" content="Chainsaw Man series">
+    <meta propety="og:description" content="Chainsaw Man series">
+    <meta name="author" content="jordan lobasso">
+    <meta name="copyright" content="jordan lobasso,student project, 2025">
+
+    <!--external stylesheet-->
+    <link rel="stylesheet" href="default.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!--Navigation-->
+
+    <nav>
+        <div class="logo"><a href="index.html"><img src="assets/Pochita_anime_design.jpg" alt="logo" width="110px"
+                    height="50px"></a>
+        </div>
+        <div class="menu1">
+            <button class="close-menu"> &times;</button>
+
+            <a href="index.html" class="menuI_active">STORIES</a>
+            <a href="Series.html" class="menuI">SERIES</a>
+            <a href="About.html" class="menuI">ABOUT</a>
+        </div>
+
+        <!-- Hamburger menu button for mobile version-->
+        <div class="hamburger-menu">
+            <button>
+                <span class="fa fa-bars"></span>
+            </button>
+        </div>
+
+
+        <!--Main wrapper-->
+        <div id="wrapper">
+
+            <header>
+                <img src="assets/.jpg" alt="">
+                <h1>Chainsaw Man</h1>
+            </header>
+
+            <!--Main Content-->
+            <main>
+                <article>
+                    <p>
+                        Chainsaw Man (Japanese: チェンソーマン, Hepburn: Chensō Man) is a Japanese manga series written and
+                        illustrated by Tatsuki
+                        Fujimoto. Its first arc was serialized in Shueisha's shōnen manga magazine Weekly Shōnen Jump
+                        from December 2018 to
+                        December 2020; its second arc began serialization in Shueisha's Shōnen Jump+ app and website in
+                        July 2022. Its chapters
+                        have been collected in 22 tankōbon volumes as of September 2025.
+
+                    <p>
+
+                    </p>
+                    Chainsaw Man follows the story of Denji, an impoverished teenager who makes a contract that fuses
+                    his body with that of
+                    Pochita, the dog-like Chainsaw Devil, granting him the ability to transform parts of his body into
+                    chainsaws. Denji
+                    eventually joins the Public Safety Devil Hunters, a government agency focused on combating Devils
+                    whenever they become a
+                    threat to Japan.
+                    </p>
+
+                    <p> Apologies for the art its just the way he drew it </p>
+                </article>
+            </main>
+            <div class="books">
+
+
+                <footer>
+                    <small><em> This website was created as part of a school project. All content and design are
+                            copyright
+                            jordan lobasso, student 2025.</em></small>
+                </footer>
+
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const hamburgerButton = document.querySelector('.hamburger-menu button');
+                    const closeButton = document.querySelector('.close-menu');
+                    const menu1 = document.querySelector('.menu1');
+
+                    // Gestion de l'ouverture du menu
+                    hamburgerButton.addEventListener('click', () => {
+                        menu1.classList.add('menu-deployed');
+                    });
+
+                    // Gestion de la fermeture du menu
+                    closeButton.addEventListener('click', () => {
+                        menu1.classList.remove('menu-deployed');
+                    });
+                });
+            </script>
+
+</body>
+
+</html>

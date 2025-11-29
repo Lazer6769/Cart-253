@@ -330,7 +330,7 @@ function startScreen() {
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
-    text("Fly Demise", 200, 200)
+    text("Regular Frog", 200, 200)
 
 }
 

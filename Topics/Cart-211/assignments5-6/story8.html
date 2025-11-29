@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arai</title>
+    <!--Meta description for SEO-->
+
+    <meta name="description" content="Arai.">
+
+    <!--open graph fro social sharing-->
+
+    <meta property="og:title" content="Arai.">
+    <meta propety="og:description" content="Arai.">
+
+    <meta name="author" content="jordan lobasso">
+    <meta name="copyright" content="jordan lobasso,student project, 2025">
+
+    <!--external stylesheet-->
+    <link rel="stylesheet" href="default.css">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- link to the social media icon library-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+
+    <div id="wrapper">
+        <header>
+            <!--Navigation-->
+
+            <nav>
+                <div class="logo"><a href="index.html"><img src="assets/Pochita_anime_design.jpg" alt="logo"
+                            width="100px" height="50px"></a>
+                </div>
+                <div class="menu1">
+                    <button class="close-menu">&times;</button>
+
+                    <a href="index.html" class="menuI">STORIES</a>
+                    <a href="Series.html" class="menuI">SERIES</a>
+                    <a href="About.html" class="menuI_active">ABOUT</a>
+                </div>
+
+                <!-- Hamburger menu button for mobile version-->
+                <div class="hamburger-menu">
+                    <button>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                </div>
+
+            </nav>
+
+        </header>
+
+        <section>
+            <article>
+                <h1>Arai</h1>
+
+                <div class="books">
+
+                    <figure class="storie-left">
+                        <a href="story8.html">
+                            <img src="assets/Arai_anime_design.jpg"></a>
+                        <div class="hover-text">Arai</div>
+                    </figure>
+                    <div class="storie-right">
+                        Hirokazu Arai (荒あら井い ヒロカズ Arai Hirokazu?) is a minor supporting character in the Public Safety
+                        Saga. He was a Public
+                        Safety Devil Hunter who was a new recruit working under Makima's special squad paired up with
+                        Kobeni Higashiyama.
+                    </div>
+
+            </article>
+        </section>
+        <!--Footer-->
+
+        <footer>
+            <div class="social">
+                <!--Social Media Icons-->
+                <div class="icons-wrapper">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-pinterest"></a>
+                    <a href="#" class="fa fa-snapchat-ghost"></a>
+
+
+
+                </div>
+
+                <small><em> This website was created as part of a school project. All content and design are copyright
+                        jordan lobasso, student 2025.</em></small>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerButton = document.querySelector('.hamburger-menu button');
+            const closeButton = document.querySelector('.close-menu');
+            const menu1 = document.querySelector('.menu1');
+
+            // Gestion de l'ouverture du menu
+            hamburgerButton.addEventListener('click', () => {
+                menu1.classList.add('menu-deployed');
+            });
+
+            // Gestion de la fermeture du menu
+            closeButton.addEventListener('click', () => {
+                menu1.classList.remove('menu-deployed');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -37,17 +37,12 @@ let swampimage = undefined;
 let swampbackgroundimage = undefined;
 
 let fullyfroggy;
-/*
-// gifs that represent the frog's emotions
-let cry;
-let screaming;
-let trapped;
-let freedom;
-*/
 
-//let bgisplaying = false;
+let bgisplaying = false;
+
+
 // Game timer (seconds)
-const GAME_DURATION = 60; // default 60 seconds
+const GAME_DURATION = 15; // default 15 seconds
 let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
@@ -129,26 +124,7 @@ const flythesecond = {
 
 flys.push(fly);
 flys.push(flythesecond);
-// irregular fly
-// has a position size and speed of horizontal movement
-/*
-const irregularfly = {
-    x: 0,
-    y: 150,
-    size: 15,
-    irspeedx: 2,
-    irspeedy: 0
-};
-// slow fly 
-// has a position size and speed of horizontal movement
-const slowfly = {
-    x: 0,
-    y: 100,
-    size: 20,
-    slspeedx: 1,
-    slspeedy: 0
-}
-    */
+
 // Object to hold all sounds
 const sounds = {
     buzzing: undefined,
@@ -167,31 +143,32 @@ function preload() {
 
 
     sounds.buzzing = loadSound("assets/sounds/mosquito.mp3");
-    sounds.buzzing.setVolume(1)
+    sounds.buzzing.setVolume(1);
     sounds.beebuzzing = loadSound("assets/sounds/beebuzzing.mp3");
-    sounds.beebuzzing.setVolume(1)
+    sounds.beebuzzing.setVolume(1);
 
     sounds.slurp = loadSound("assets/sounds/yoshi-tongue-sound-snes.mp3");
-    sounds.slurp.setVolume(8)
+    sounds.slurp.setVolume(8);
     sounds.gulp = loadSound("assets/sounds/gulp-with-bubble.mp3");
-    sounds.gulp.setVolume(6)
+    sounds.gulp.setVolume(6);
 
     sounds.daytimeswamp = loadSound("assets/sounds/daytime-swamp-ambience.mp3");
     sounds.countryswamp = loadSound("assets/sounds/countryside-swamp.mp3");
+    sounds.countryswamp.setVolume(3);
     sounds.swampwoods = loadSound("assets/sounds/swamp-woods.mp3");
 
-    beeimage = loadImage("assets/images/bee.png")
-    flyimage = loadImage("assets/images/cartoonfly.png")
-    mosquitoimage = loadImage("assets/images/mosquito.png")
-    lilypadimage = loadImage("assets/images/Lilypad.png")
-    froggyimage = loadImage("assets/images/froggy.png")
-    smallfroggyimage = loadImage("assets/images/small_frog.png")
-    simplefrogimage = loadImage("assets/images/simplefrog.png")
-    bigfrogimage = loadImage("assets/images/bigfrog.png")
-    swampbackgroundimage = loadImage("assets/images/louisiana-swamp.png")
-    swampimage = loadImage("assets/images/swamp.png")
+    beeimage = loadImage("assets/images/bee.png");
+    flyimage = loadImage("assets/images/cartoonfly.png");
+    mosquitoimage = loadImage("assets/images/mosquito.png");
+    lilypadimage = loadImage("assets/images/Lilypad.png");
+    froggyimage = loadImage("assets/images/froggy.png");
+    smallfroggyimage = loadImage("assets/images/small_frog.png");
+    simplefrogimage = loadImage("assets/images/simplefrog.png");
+    bigfrogimage = loadImage("assets/images/bigfrog.png");
+    swampbackgroundimage = loadImage("assets/images/louisiana-swamp.png");
+    swampimage = loadImage("assets/images/swamp.png");
 
-    fullyfroggy = loadImage("assets/images/fullfrog.gif")
+    fullyfroggy = loadImage("assets/images/fullfrog.gif");
 
 }
 
@@ -210,12 +187,6 @@ function setup() {
     for (let fly of flys) {
         resetFly(fly);
     }
-
-    //resetgameTime();
-
-    // sounds.buzzing.loop();
-    // sounds.beebuzzing.loop();
-    // sounds.scarymusic.loop();
 
 }
 
@@ -247,20 +218,12 @@ function draw() {
             moveFly(fly);
             checkTongueFlyOverlap(fly);
         }
-        //moveirregularfly();
-        //drawirregularfly();
-        //moveslowfly();
-        //drawslowfly();
         drawLilypad();
         moveFrog();
         moveTongue();
         drawFrog();
-
-        //checkTongueirregularflyOverlap();
-        //checkTongueslowflyOverlap();
         drawScore();
-        //drawScoree();
-        //drawScoreee();
+
 
 
 
@@ -330,7 +293,7 @@ function startScreen() {
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
-    text("Regular Frog", 200, 200)
+    text("Regular Frog", 150, 200)
 
 }
 
@@ -361,32 +324,6 @@ function drawScore() {
     text(score, 520, 30);
     pop();
 }
-/*
-function drawScoree() {
-   push();
-   fill("#eeff00ff");
-   textSize(32);
-   textStyle(BOLD);
-   textAlign(CENTER, CENTER);
-   text(scoree, 560, 30);
-   pop();
-}
-function drawScoreee() {
-   push();
-   fill("#ff00ffff");
-   textSize(32);
-   textStyle(BOLD);
-   textAlign(CENTER, CENTER);
-   text(scoreee, 600, 30);
-   pop();
-}
-*/
-/**
- * Moves the fly according to its speed
- * Resets the fly if it gets all the way to the right
- */
-
-
 function moveFly(thefly) {
     // Move the fly
 
@@ -397,50 +334,9 @@ function moveFly(thefly) {
     thefly.y = constrain(thefly.y, 50, 400);
     thefly.y += thefly.speedy;
 
-    //console.log(fly.y);
-    // Handle the fly going off the canvas
-    /*
-     if (thefly.x >= width) {
-         resetFly(thefly);
-     }
-         */
 }
 
-/*
-function moveirregularfly() {
-    // Move the fly
-    irregularfly.x += irregularfly.irspeedx;
-    irregularfly.irspeedx = random(-15, 25);
-    irregularfly.x = constrain(irregularfly.x, 0, width);
-    irregularfly.irspeedy = random(-15, 25);
-    irregularfly.y = constrain(irregularfly.y, 100, 200);
-    irregularfly.y += irregularfly.irspeedy;
 
-    //console.log(irregularfly.y);
-    // Handle the fly going off the canvas
-    if (irregularfly.x >= width) {
-        resetirregularfly();
-    }
-}
-
-function moveslowfly() {
-    // Move the fly
-    //slowfly.x += noise(0.5, 10, 100);
-    slowfly.x += slowfly.slspeedx;
-    slowfly.slspeedx = random(-10, 15);
-    slowfly.x = constrain(slowfly.x, 0, width);
-    slowfly.slspeedy = random(-5, 10);
-    slowfly.y = constrain(slowfly.y, 150, 250);
-    slowfly.y += slowfly.slspeedy;
-
-    //console.log(slowfly.y);
-
-    // Handle the fly going off the canvas
-    if (slowfly.x >= width) {
-        resetslowfly();
-    }
-}
-*/
 /**
  * Draws the fly as a black circle
  */
@@ -452,24 +348,6 @@ function drawFly(thefly) {
     pop();
     //console.log(fly.x, fly.y, fly.speedx, fly.speedy);
 }
-/*
-function drawirregularfly() {
-    push();
-    noStroke();
-    fill("#f0ff00");
-    image(beeimage, irregularfly.x, irregularfly.y, irregularfly.size, irregularfly.size);
-    pop();
-}
-
-function drawslowfly() {
-    push();
-    noStroke();
-    fill("#ff00ff");
-    image(mosquitoimage, slowfly.x, slowfly.y, slowfly.size, slowfly.size);
-    pop();
-}
-*/
-
 
 /**
  * Resets the fly to the left with a random y
@@ -481,30 +359,20 @@ function resetFly(thefly) {
 
 
 
-/*
-function resetirregularfly() {
-    irregularfly.x = 0;
-    irregularfly.y = random(0, 300);
-}
 
-function resetslowfly() {
-    slowfly.x = 0;
-    slowfly.y = random(0, 300);
-}
-*/
 /**
  * Moves the frog to the mouse position on x
  */
 function moveFrog() {
-    /*
-      frog.body.x = mouseX
-      const eyeOffsetX = 40;
-      const pupilOffsetX = 40;
-      frog.Eye1.x = frog.body.x - eyeOffsetX;
-      frog.Eye2.x = frog.body.x + eyeOffsetX;
-      frog.Pupil1.x = frog.body.x - pupilOffsetX;
-      frog.Pupil2.x = frog.body.x + pupilOffsetX;
-      */
+
+
+    const eyeOffsetX = 40;
+    const pupilOffsetX = 40;
+    frog.Eye1.x = frog.body.x - eyeOffsetX;
+    frog.Eye2.x = frog.body.x + eyeOffsetX;
+    frog.Pupil1.x = frog.body.x - pupilOffsetX;
+    frog.Pupil2.x = frog.body.x + pupilOffsetX;
+
 
     // tongue direction radially around frog
     frog.tongue.directionX = mouseX;
@@ -658,53 +526,6 @@ function checkTongueFlyOverlap(thefly) {
     }
 }
 
-/*
-function checkTongueirregularflyOverlap() {
-    // Get distance from tongue to fly
-    const d = dist(frog.tongue.tipx, frog.tongue.tipy, irregularfly.x, irregularfly.y);
-    const close = (d < 150);
-    if (close) {
-        fly.y += 150
-    }
-    // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + irregularfly.size / 2);
-    if (eaten) {
-        sounds.gulp.play();
-        
-        scoree++;
-        // Reset the fly
-        resetirregularfly();
-        // Reset the game timer when a fly is eaten
-        timerRemaining = GAME_DURATION;
-        timerActive = true;
-        // Bring back the tongue
-        frog.tongue.state = "inbound";
-    }
-}
-
-function checkTongueslowflyOverlap() {
-    // Get distance from tongue to fly
-    const d = dist(frog.tongue.tipx, frog.tongue.tipy, slowfly.x, slowfly.y);
-    const close = (d < 300);
-    if (close) {
-        fly.y += 300
-    }
-    // Check if it's an overlap
-    const eaten = (d < frog.tongue.size / 2 + slowfly.size / 2);
-    if (eaten) {
-        sounds.gulp.play();
-        
-        scoreee++;
-        // Reset the fly
-        resetslowfly();
-        // Reset the game timer when a fly is eaten
-        timerRemaining = GAME_DURATION;
-        timerActive = true;
-        // Bring back the tongue
-        frog.tongue.state = "inbound";
-    }
-}
-*/
 /**
  * Launch the tongue on click (if it's not launched yet)
  */
@@ -714,24 +535,15 @@ function mousePressed() {
         sounds.slurp.play();
     }
 }
-//
-/*
-function mousePressed() {
-    if (frog.tongue.state === "idle") {
-        frog.tongue.state = "outbound";
-        sounds.slurp.play();
-    }
-}
-*/
 
 
 
 
 function keyPressed() {
-    // if (!bgisplaying) {
-
-    //     bgisplaying = true;
-    // }
+    if (!bgisplaying) {
+        sounds.countryswamp.loop();
+        bgisplaying = true;
+    }
     // p5 calls keyPressed() when any key is pressed in global mode.
     if (whatscreen === "start") {
         whatscreen = "instructions";
@@ -757,13 +569,7 @@ function keyPressed() {
             resetFly(fly);
         }
         score = 0;
-        /*
-        resetirregularfly();
-        resetslowfly();
-        score = 0;
-        scoree = 0;
-        scoreee = 0;
-        */
+
     }
 
     else if (whatscreen === "win") {
@@ -776,13 +582,6 @@ function keyPressed() {
         }
 
         score = 0;
-        /*
-        resetirregularfly();
-        resetslowfly();
-        score = 0;
-        scoree = 0;
-        scoreee = 0;
-        */
     }
 
 }
@@ -802,12 +601,7 @@ function endScreen() {
     textSize(18);
     text("Press any key to restart", width / 2, height / 2 + 50);
     pop();
-    //sounds.flap.loop() = false;
-    //sounds.flap.play();
 
-
-
-    //bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
 
@@ -824,16 +618,13 @@ function winScreen() {
     text("'You Win!'", width / 2, height / 5 - 60);
 
     textSize(28);
-    const total = score //+ scoree + scoreee;
+    const total = score
     text("Flies eaten: " + total + " / " + TARGET_FLIES, width / 2, height / 1.5 + 60);
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
-
-    //sounds.laughing.play();
-
-
-    //bgisplaying = false;
+    sounds.countryswamp.stop();
+    bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();
 

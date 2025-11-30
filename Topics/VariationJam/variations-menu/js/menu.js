@@ -5,9 +5,9 @@
  */
 
 const menuText = `
-(R) Red variation
-(G) Green variation
-(B) Blue variation`
+(R) Frog Heavenb
+(G) Regular Frog
+(B) Pumpkin Smasher`
 
 /**
  * Display the main menu
@@ -29,7 +29,7 @@ function menuDraw() {
 function menuKeyPressed(event) {
     switch (event.keyCode) {
         case 82:
-            window.open("https://lazer6769.github.io/Cart-253/Topics/VariationJam/pumpkinsmasher/");
+            window.open("https://lazer6769.github.io/Cart-253/Topics/VariationJam/frogheaven/");
             break;
 
         case 71:
@@ -37,7 +37,7 @@ function menuKeyPressed(event) {
             break;
 
         case 66:
-            window.open("https://lazer6769.github.io/Cart-253/Topics/VariationJam/frogheaven/");
+            window.open("https://lazer6769.github.io/Cart-253/Topics/VariationJam/pumpkinsmasher/");
             break;
     }
 }

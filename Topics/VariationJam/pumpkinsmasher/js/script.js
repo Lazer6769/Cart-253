@@ -1,18 +1,26 @@
 let whatscreen = "start"
 
+const TARGET_PUMPKINS = 20;
+let score = 0;
+
 let pumpkinimage = undefined;
 let batimage = undefined;
 let jackoLanternimage = undefined;
 let pumpkinbackgroundimage = undefined;
 let streetimage = undefined;
+let smashedimage = undefined;
+
+let bgisplaying = false;
 
 const sounds = {
     pumpkinnoise: undefined,
     pumpkinsplat: undefined,
+    musicpumpkin: undefined
 }
 function preload() {
     sounds.pumpkinnoise = loadSound("assets/sounds/pumpkin-meme.mp3");
     sounds.pumpkinsplat = loadSound("assets/sounds/lancer-splat.mp3");
+    sounds.musicpumpkin = loadSound("assets/sounds/halloween-background-music-425891.mp3");
 
     pumpkinimage = loadImage("assets/images/Pumpkin.png");
     batimage = loadImage("assets/images/bat.png");
@@ -20,6 +28,7 @@ function preload() {
     jackoLanternimage = loadImage("assets/images/jackolantern.png");
     pumpkinbackgroundimage = loadImage("assets/images/PUMPKINbackground.png");
     streetimage = loadImage("assets/images/halloweenstreet.png");
+    smashedimage = loadImage("assets/images/smashed.png");
 }
 
 const frog = {
@@ -88,6 +97,7 @@ function addPumpkin() {
 
     setTimeout(addPumpkin, pumpkinDelay)
 
+
 }
 
 function createPumpkin() {
@@ -116,13 +126,21 @@ function draw() {
         moveFrog();
         drawFrog();
         moveTongue();
+        drawScore();
 
+
+        const totalPumpkin = score;
+        if (totalPumpkin >= TARGET_PUMPKINS) {
+            // Player wins
+            whatscreen = "win";
+        }
 
         for (let pumpkin of pumpkins) {
             movePumpkin(pumpkin);
             drawPumpkin(pumpkin);
             checkTonguePumpkinOverlap(pumpkin);
         }
+
 
     } else {
         // If not in game, show the appropriate screen overlay.
@@ -132,11 +150,8 @@ function draw() {
             instructionsScreen();
         } else if (whatscreen === "win") {
             winScreen();
-        } else if (whatscreen === "end") {
-            endScreen();
         }
     }
-
 
 }
 
@@ -149,7 +164,7 @@ function startScreen() {
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
-    text("Pumpkin Smasher", 200, 200)
+    text("Pumpkin Smasher", 100, 200)
 
 }
 
@@ -162,14 +177,30 @@ function instructionsScreen() {
     textSize(20);
     text("Press with a key to start", 200, 440)
     text(10)
-    text("- use the Mouse to Move tongue", 45, 320)
-    text("- Click Mouse 1 to Launch tongue", 45, 340)
+    text("Smash All the Pumpkins that you can", 45, 120)
+    text("- use the Mouse to Move tongue", 45, 140)
+    text("- Click Mouse 1 to Launch tongue", 45, 160)
     textSize(75);
     text(BOLD)
     text("Instructions", 125, 100)
 }
 
+function drawScore() {
+    push();
+    fill("#ff6a00ff");
+    textSize(32);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text(score, 520, 30);
+    pop();
+}
+
 function keyPressed() {
+    if (!bgisplaying) {
+        sounds.musicpumpkin.loop();
+        bgisplaying = true;
+    }
+
     // p5 calls keyPressed() when any key is pressed in global mode.
     if (whatscreen === "start") {
         whatscreen = "instructions";
@@ -319,6 +350,9 @@ function checkTonguePumpkinOverlap(pumpkin) {
 
         sounds.pumpkinnoise.play();
         sounds.pumpkinsplat.play();
+        score++;
+
+        // Remove the pumpkin from the pumpkins array
         pumpkins.splice(pumpkins.indexOf(pumpkin), 1)
 
 
@@ -336,3 +370,29 @@ function mousePressed() {
 }
 
 
+function winScreen() {
+    // Simple win screen showing final total and restart prompt.
+    background(20, 120, 20, 200);
+    image(smashedimage, 0, 0, width, height);
+    push();
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(56);
+    text("'You Win!'", width / 2, height / 5 - 60);
+    textSize(32);
+    text("Hope you're happy with yourself", width / 2, height / 3);
+    text("You smashed all these pumpkins", width / 2, height / 3 + 40);
+    text("for what fun????", width / 2, height / 3 + 60);
+    text('Hopefully this is not the beginning of', width / 2, height / 3 + 80);
+    text('more sinister acts of evil', width / 2, height / 3 + 100);
+
+    textSize(28);
+    const total = score
+    text("Pumpkins smashed " + total + " / " + TARGET_PUMPKINS, width / 2, height / 1.5 + 60);
+    textSize(18);
+    text("Press any key to play again", width / 2, height / 1.5 + 90);
+    pop();
+
+    sounds.musicpumpkin.stop();
+    bgisplaying = false;
+}

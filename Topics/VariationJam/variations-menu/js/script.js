@@ -27,13 +27,13 @@ function draw() {
         case "menu":
             menuDraw();
             break;
-        case "red-variation":
+        case "Frog Heaven":
             redDraw();
             break
-        case "green-variation":
+        case "Regular Frog":
             greenDraw();
             break;
-        case "blue-variation":
+        case "Pumpkin Smasher":
             blueDraw();
             break;
     }

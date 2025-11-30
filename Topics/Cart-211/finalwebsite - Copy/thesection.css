@@ -1,0 +1,193 @@
+body {
+    background-color: rgba(18, 78, 2, 0.877);
+    font-family: "Stack Sans Notch", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+
+.Visual {
+    display: block;
+    padding: 10px;
+    padding-left: 375px;
+    max-width: 50%;
+    gap: 16px;
+    opacity: 100%;
+    transition: opacity 1s;
+
+}
+
+.Visual img {
+    display: block;
+    width: 100%;
+    /* height: 1400px; */
+    object-fit: cover;
+}
+
+.Visual>div {
+    text-align: center;
+    padding: 10px;
+
+}
+
+.Visual figure {
+    margin: 0;
+}
+
+#wrapper {
+
+    margin-top: 0px;
+    float: center;
+    width: 100%;
+    margin-right: 50px;
+}
+
+header h1 {
+
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: 150px;
+    margin-bottom: 5px;
+    color: transparent;
+    background-image: url(assets/eye.gif);
+    background-position: 0 50%;
+    background-clip: text;
+
+}
+
+
+
+nav {
+    margin-top: 50px;
+    margin-right: 50px;
+    float: right;
+    width: 15%;
+    line-height: 30px;
+
+
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(213, 93, 1);
+    font-weight: bold;
+
+}
+
+article {
+    text-align: center;
+    padding: 5px
+}
+
+section {
+    margin-bottom: 30px;
+    text-align: justify;
+
+
+}
+
+article p:last-child {
+    text-align: center;
+    margin-bottom: 80px;
+
+}
+
+article h3 {
+    margin-bottom: 10px;
+    color: darkgray;
+}
+
+footer {
+    margin-top: 20px;
+    min-height: 30px;
+    font-size: 10px;
+    font-weight: lighter;
+    text-align: right;
+    font-style: italic;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+}
+
+
+
+.books {
+    color: rgb(213, 93, 1);
+    display: grid;
+
+    max-width: 100%;
+
+
+
+}
+
+.books img {
+    display: block;
+    width: 100%;
+    height: 1000px;
+    object-fit: cover;
+    opacity: 75%;
+}
+
+.books>div {
+    text-align: center;
+    padding: 10px;
+
+}
+
+.books figure {
+    margin: 0;
+}
+
+.hover-text {
+    text-align: center;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+article figure figcaption {
+    margin-top: 5px;
+    font-size: 12px;
+
+}
+
+table img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Make the site navigation horizontal without changing HTML (hides the <br> used between links)
+   and provide small spacing and hover styling. This overrides prior `nav` rules below. */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    /* allow wrapping on narrow screens */
+    gap: 12px;
+    /* spacing between links */
+    align-items: center;
+    width: auto;
+    /* let nav size to content instead of fixed 15% */
+    line-height: normal;
+}
+
+/* Hide the <br> elements used in the HTML so links sit on one line */
+nav br {
+    display: none;
+}
+
+nav a {
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: rgb(255, 128, 0);
+    color: black;
+}

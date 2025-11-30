@@ -1,0 +1,283 @@
+body {
+    background-color: rgba(18, 78, 2, 0.877);
+    font-family: "Stack Sans Notch", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+
+.Visual {
+    display: block;
+    padding: 10px;
+    padding-left: 325px;
+    max-width: 60%;
+    gap: 16px;
+    opacity: 100%;
+    transition: opacity 1s;
+
+
+}
+
+.Visual img {
+    display: block;
+    width: 100%;
+    /* height: 1400px; */
+    object-fit: cover;
+}
+
+.Visual>div {
+    text-align: center;
+    padding: 10px;
+
+}
+
+.Visual figure {
+    margin: 0;
+}
+
+
+#wrapper {
+
+    margin-top: 0px;
+    float: center;
+    width: 100%;
+    margin-right: 50px;
+}
+
+header h1 {
+
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: 150px;
+    margin-bottom: 5px;
+    color: transparent;
+    background-image: url(assets/eye.gif);
+    background-position: 0 50%;
+    background-clip: text;
+
+}
+
+header h2 {
+
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(213, 93, 1);
+}
+
+header h3 {
+
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(213, 93, 1);
+}
+
+header img {
+    margin-top: 150px;
+    margin-left: 50px;
+    width: 100%;
+
+}
+
+nav {
+    margin-top: 50px;
+    margin-right: 50px;
+    float: right;
+    width: 15%;
+    line-height: 30px;
+
+
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(213, 93, 1);
+    font-weight: bold;
+
+}
+
+article {
+    text-align: center;
+    padding: 5px;
+    color: rgb(213, 93, 1);
+}
+
+section {
+    margin-bottom: 30px;
+    text-align: justify;
+
+
+}
+
+article p:last-child {
+    text-align: center;
+    margin-bottom: 80px;
+
+}
+
+article h3 {
+    margin-bottom: 10px;
+    color: darkgray;
+}
+
+footer {
+    margin-top: 20px;
+    min-height: 30px;
+    font-size: 10px;
+    font-weight: lighter;
+    text-align: right;
+    font-style: italic;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+}
+
+
+
+.books {
+    color: rgb(213, 93, 1);
+    display: grid;
+    grid-template-columns: auto auto auto;
+    max-width: 100%;
+    gap: 16px;
+    opacity: 100%;
+    transition: opacity 1s;
+
+}
+
+.books img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.books>div {
+    text-align: center;
+    padding: 10px;
+
+}
+
+.books figure {
+    margin: 0;
+}
+
+.hover-text {
+    text-align: center;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+article figure figcaption {
+    margin-top: 5px;
+    font-size: 12px;
+
+}
+
+table img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Make the site navigation horizontal without changing HTML (hides the <br> used between links)
+   and provide small spacing and hover styling. This overrides prior `nav` rules below. */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    /* allow wrapping on narrow screens */
+    gap: 12px;
+    /* spacing between links */
+    align-items: center;
+    width: auto;
+    /* let nav size to content instead of fixed 15% */
+    line-height: normal;
+}
+
+/* Hide the <br> elements used in the HTML so links sit on one line */
+nav br {
+    display: none;
+}
+
+nav a {
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: rgb(255, 128, 0);
+    color: black;
+}
+
+.night-vision {
+    filter:
+        sepia(90%) hue-rotate(80deg) saturate(500%) brightness(70%) contrast(150%);
+    mix-blend-mode: screen;
+    position: relative;
+}
+
+/* Optional: Add scan-line effect */
+.night-vision::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(rgba(0, 0, 0, 0.2) 0px,
+            rgba(0, 0, 0, 0.2) 2px,
+            rgba(0, 255, 0, 0.1) 3px);
+    pointer-events: none;
+}
+
+body {
+    background-image: url('assets/static.gif');
+    background-size: cover;
+    /* Makes it fill the whole screen */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    /* Keeps it static while scrolling */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Night vision effect filter */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: sepia(90%) hue-rotate(80deg) saturate(500%) brightness(70%) contrast(140%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Optional: Add scan lines */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(rgba(0, 255, 0, 0.05) 0px,
+            rgba(0, 255, 0, 0.05) 2px,
+            rgba(0, 0, 0, 0.15) 3px);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: -1;
+}

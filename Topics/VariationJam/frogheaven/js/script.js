@@ -4,7 +4,13 @@ Jordan Lobasso
 
 the classic frog game you know well but in heaven
 
-*/
+click to launch tongue and eat flies and experience paradise for what it is 
+
+ * 
+ * Uses:
+ * p5.js
+ * https://p5js.org
+ */
 
 "use strict";
 let whatscreen = "start"
@@ -15,6 +21,7 @@ let mosquitoimage = undefined;
 let heavenstairsimage = undefined
 let heavenlyskyimage = undefined
 let heavengateimage = undefined
+let seraphimimage = undefined
 // gifs that represent the frog 
 
 let bgisplaying = false;
@@ -24,7 +31,7 @@ let timerRemaining = GAME_DURATION;
 let timerActive = false;
 
 // Win condition: total flies to eat
-const TARGET_FLIES = 5000;
+const TARGET_FLIES = 2000;
 
 let score = 0;
 //let scoree = 0;
@@ -136,6 +143,7 @@ function preload() {
     heavenstairsimage = loadImage("assets/images/heavenstairs.png")
     heavenlyskyimage = loadImage("assets/images/heaven.png")
     heavengateimage = loadImage("assets/images/heavengate.png")
+    seraphimimage = loadImage("assets/images/seraphim.png")
 
 
 
@@ -242,8 +250,6 @@ function draw() {
             instructionsScreen();
         } else if (whatscreen === "win") {
             winScreen();
-        } else if (whatscreen === "end") {
-            endScreen();
         }
     }
 }
@@ -254,12 +260,12 @@ function startScreen() {
     background("#000000d3");
     image(heavenstairsimage, 0, 0, width, height);
     //startscreen allowing you to press the key before starting the game 
-    fill(255)
+    fill(0)
     textSize(20);
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
-    text("Fly Heaven", 200, 200)
+    text("Fly Heaven", 180, 200)
 
 }
 
@@ -268,12 +274,16 @@ function instructionsScreen() {
     background("#000000d3");
     image(heavengateimage, 0, 0, width, height);
     //instructionsScreen allowing you to press the key before starting the game 
-    fill(255, 203, 80)
+    fill(0)
     textSize(20);
     text("Press with a key to start", 200, 440)
     text(10)
-    text("- use the Mouse to Move tongue", 45, 320)
-    text("- Click Mouse 1 to Launch tongue", 45, 340)
+    text("- Welcome to heaven my child", 45, 200)
+    text("- You've lived quite the frog live", 45, 220)
+    text("- Now you may relax and wonder", 45, 240)
+    text("- Your own froggy paradise", 45, 260)
+    text("- use the Mouse to Move tongue", 45, 280)
+    text("- Click Mouse 1 to Launch tongue", 45, 300)
     textSize(75);
     text(BOLD)
     text("Instructions", 125, 100)
@@ -497,37 +507,14 @@ function keyPressed() {
 
 }
 
-function endScreen() {
-    // Simple end screen showing final scores and restart prompt.
-    background(0, 0, 0, 180);
-
-    push();
-    textAlign(CENTER, CENTER);
-    fill(255);
-    textSize(48);
-    text("Game Over", width / 2, height / 2 - 50);
-    textSize(24);
-    let combined = "Scores: " + score
-    text(combined, width / 2, height / 2);
-    textSize(18);
-    text("Press any key to restart", width / 2, height / 2 + 50);
-    pop();
-
-
-
-
-    bgisplaying = false;
-    sounds.buzzing.stop();
-    sounds.beebuzzing.stop();
-
-}
 
 function winScreen() {
     // Simple win screen showing final total and restart prompt.
     background(20, 120, 20, 200);
+    image(seraphimimage, 0, 0, width, height);
     push();
     textAlign(CENTER, CENTER);
-    fill(255);
+    fill(0);
     textSize(56);
     text("YOU WIN!", width / 2, height / 5 - 60);
     textSize(32);
@@ -542,7 +529,6 @@ function winScreen() {
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
-
 
 
     bgisplaying = false;

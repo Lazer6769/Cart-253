@@ -1,3 +1,20 @@
+/**
+ * Pumpkin Smasher
+ * Jordan Lobasso
+ * 
+ * A game where a michievous frog smashes pumpkins with its trust baseball bat
+ * 
+ * 
+ * Controls: 
+ * - click to launch the Baseball bat to smash the pumpkins
+ * 
+ * Uses:
+ * p5.js
+ * https://p5js.org
+ */
+
+
+
 let whatscreen = "start"
 
 const TARGET_PUMPKINS = 20;

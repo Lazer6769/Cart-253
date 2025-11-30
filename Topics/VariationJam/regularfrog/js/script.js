@@ -2,13 +2,12 @@
  * Frog demise
  * Jordan Lobasso - 2025
  * 
- * A game about 'escaping hell' by catching fly souls with a frog's tongue.
+ * A game about a regular frog in a regualr swamp trying to eat flies to surivive
  * 
  * Instructions:
- * - Move the frog's tongue with your mouse
- * - Click to launch the tongue
- * - Catch flies
- * - escape hell!
+ * - press the mouse to launch the tongue at those pesky flies
+ * - eat as many flies as you can (300)
+ * - and use your mouse to aim the tongue to catch them all
  * 
  * Made with p5
  * https://p5js.org/

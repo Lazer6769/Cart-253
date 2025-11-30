@@ -13,14 +13,7 @@
  * https://p5js.org/
  */
 
-//frog on top of lily pad 
-// fly moving up down and left right
-// also drawing the background sceneray
-// array's 
-//the tongue isnt on the floor 
 
-//we got the array for multiple flies, we got pumpkin to work, lily pad image working, after today put all you did today into the heave one 
-//also we figure out the issue with the image being the game background image(hellgateimage, 0, 0, width, height); just put it 
 "use strict";
 let whatscreen = "start"
 // images for backgrounds and sprites
@@ -133,6 +126,7 @@ const sounds = {
     daytimeswamp: undefined,
     countryswamp: undefined,
     swampwoods: undefined,
+    burp: undefined
 
 };
 
@@ -155,6 +149,8 @@ function preload() {
     sounds.countryswamp = loadSound("assets/sounds/countryside-swamp.mp3");
     sounds.countryswamp.setVolume(3);
     sounds.swampwoods = loadSound("assets/sounds/swamp-woods.mp3");
+    sounds.burp = loadSound("assets/sounds/burp.mp3");
+    sounds.burp.setVolume(0.7);
 
     beeimage = loadImage("assets/images/bee.png");
     flyimage = loadImage("assets/images/cartoonfly.png");
@@ -614,7 +610,7 @@ function winScreen() {
     textAlign(CENTER, CENTER);
     fill(255);
     textSize(56);
-    text("'You Win!'", width / 2, height / 5 - 60);
+    text("You Win!", width / 2, height / 5 - 60);
 
     textSize(28);
     const total = score
@@ -622,6 +618,7 @@ function winScreen() {
     textSize(18);
     text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
+    sounds.burp.play();
     sounds.countryswamp.stop();
     bgisplaying = false;
     sounds.buzzing.stop();

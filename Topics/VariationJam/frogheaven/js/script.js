@@ -265,7 +265,7 @@ function startScreen() {
     text("Press with a key to start", 205, 400)
     textSize(50);
     text(BOLD)
-    text("Fly Heaven", 180, 200)
+    text("Frog Heaven", 180, 200)
 
 }
 

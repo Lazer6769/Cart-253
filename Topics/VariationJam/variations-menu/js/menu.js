@@ -5,7 +5,7 @@
  */
 
 const menuText = `
-(R) Frog Heavenb
+(R) Frog Heaven
 (G) Regular Frog
 (B) Pumpkin Smasher`
 

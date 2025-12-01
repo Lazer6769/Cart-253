@@ -10,7 +10,7 @@ View these projects separately
 [Pumpkin Smasher](https://lazer6769.github.io/Cart-253/Topics/VariationJam/pumpkinsmasher/)
 
 ## Description 
- The variation jam takes the frogmodjam of being in hell and takes the frog to different places in time, some before he was sent to hell, others of him living his life has a regular frog, and another takes an alternate timeline where the frog was sent to heaven after his passing. 
+ The variation jam takes the frogmodjam of being in hell. It sends him to different places in time: some before he was sent to hell, others of him living his life as a regular frog, and another takes him to an alternate timeline where the frog was sent to heaven after his passing. 
 
 Controls
 
@@ -40,45 +40,45 @@ You’re a mischievous frog doing some Halloween shenanigans, and you decide to 
 Sound assets are from Myinstants and Pixabay
 
 halloween music
-https://pixabay.com/music/scary-childrens-tunes-halloween-background-music-425891/ 
-https://pixabay.com/music/search/halloween/
+[here](https://pixabay.com/music/scary-childrens-tunes-halloween-background-music-425891/)
+[here](https://pixabay.com/music/search/halloween/)
 
 Countryside swamp 
-https://pixabay.com/sound-effects/countryside-swamp-insects-environment-402579/
-https://pixabay.com/sound-effects/search/swamp/
+[here](https://pixabay.com/sound-effects/countryside-swamp-insects-environment-402579/)
+[here](https://pixabay.com/sound-effects/search/swamp/)
 
 Beebuzzing 
-https://www.myinstants.com/en/instant/buzzing-bee-85182/
+[here](https://www.myinstants.com/en/instant/buzzing-bee-85182/)
 
 Buzzing
- https://www.myinstants.com/en/instant/fly-buzzing-11478/
+[here](https://www.myinstants.com/en/instant/fly-buzzing-11478/)
 
 Gulp with bubbles 
-https://www.myinstants.com/en/instant/gulp-with-bubble-26376/
+[here](https://www.myinstants.com/en/instant/gulp-with-bubble-26376/)
 
 Heavenly music 
-https://www.myinstants.com/en/instant/vannoss-heaven/
+[here](https://www.myinstants.com/en/instant/vannoss-heaven/)
 
 Mosquito 
-https://www.myinstants.com/en/instant/mosquito-buzzing-94399/
+[here]https://www.myinstants.com/en/instant/mosquito-buzzing-94399/
 
 Yoshi-tongue-sound-snes
-https://www.myinstants.com/en/instant/yoshi-tongue-sound-snes-54168/
+[here](https://www.myinstants.com/en/instant/yoshi-tongue-sound-snes-54168/)
 
 Burp
-https://www.myinstants.com/en/instant/burp-echo-11169/
+[here](https://www.myinstants.com/en/instant/burp-echo-11169/)
 
 Daytime-swamp-ambience
-https://pixabay.com/sound-effects/daytime-swamp-ambience-crickets-252294/
+[here](https://pixabay.com/sound-effects/daytime-swamp-ambience-crickets-252294/)
 
 Swamp-woods
-https://pixabay.com/sound-effects/swamp-woods-34735/
+[here](https://pixabay.com/sound-effects/swamp-woods-34735/)
 
 Lancer-splat
-https://www.myinstants.com/en/instant/lancer-splat-18107/
+[here](https://www.myinstants.com/en/instant/lancer-splat-18107/)
 
 Pumpkin-meme
-https://www.myinstants.com/en/instant/pumpkin-meme-42250/
+[here](https://www.myinstants.com/en/instant/pumpkin-meme-42250/)
 
 ##### License 
 

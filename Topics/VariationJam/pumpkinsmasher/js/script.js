@@ -397,17 +397,17 @@ function winScreen() {
     textSize(56);
     text("'You Win!'", width / 2, height / 5 - 60);
     textSize(32);
-    text("Hope you're happy with yourself", width / 2, height / 3);
-    text("You smashed all these pumpkins", width / 2, height / 3 + 40);
-    text("for what fun????", width / 2, height / 3 + 60);
-    text('Hopefully this is not the beginning of', width / 2, height / 3 + 80);
-    text('more sinister acts of evil', width / 2, height / 3 + 100);
+    text("Hope you're happy with yourself", 295, 180);
+    text("You smashed all these pumpkins,", 300, 220);
+    text("for what fun????", 300, 260);
+    text('Hopefully this is not the beginning of', 300, 300);
+    text('more sinister acts of evil', 300, 340);
 
     textSize(28);
     const total = score
     text("Pumpkins smashed " + total + " / " + TARGET_PUMPKINS, width / 2, height / 1.5 + 60);
     textSize(18);
-    text("Press any key to play again", width / 2, height / 1.5 + 90);
+    text("Press CTRL R to play again", width / 2, height / 1.5 + 90);
     pop();
 
     sounds.musicpumpkin.stop();

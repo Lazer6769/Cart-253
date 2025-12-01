@@ -429,7 +429,7 @@ function drawFrog() {
 function checkTongueFlyOverlap(thefly) {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.tipx, frog.tongue.tipy, thefly.x, thefly.y);
-    const close = (d < 50);
+    const close = (d < -50);
     if (close) {
         thefly.y += 50
     }
@@ -530,7 +530,7 @@ function winScreen() {
     text("Press any key to play again", width / 2, height / 1.5 + 90);
     pop();
 
-
+    sounds.heaven.stop();
     bgisplaying = false;
     sounds.buzzing.stop();
     sounds.beebuzzing.stop();

@@ -231,7 +231,7 @@ function draw() {
             // Player wins
             timerActive = false;
             whatscreen = "win";
-            sounds.laughing.play();
+
         }
 
         // Display timer at top-left
@@ -517,7 +517,7 @@ function winScreen() {
     fill(0);
     textSize(56);
     text("YOU WIN!", width / 2, height / 5 - 60);
-    textSize(32);
+    textSize(24);
     text("you've had quite the journey in your life", width / 2, height / 3);
     text("as you've spent your life surviving and thriving", width / 2, height / 3 + 40);
     text('And now have experiecned heavens wonders and joy', width / 2, height / 3 + 80);

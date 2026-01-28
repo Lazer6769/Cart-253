@@ -14,7 +14,7 @@ function setup() {
     const paragraphs = document.querySelectorAll('p');
     paragraphs.forEach(p => {
         console.log(p.textContent);
-        p.style.color = 'blue';
+
     });
 
 
@@ -216,9 +216,14 @@ function setup() {
         parent.appendChild(newParagraph);
     }
 
-    allPTagsThree.forEach(pTag => {
-        customCreateElement(pTag);
-    });
+    for (let pTage of allPTagsThree) {
+        customCreateElement(pTage);
+    }
+    for (let i = 0; i < allPTagsThree.length; i++) {
+
+    }
+
+
     /***EXPLANATION::
      * 
      * 

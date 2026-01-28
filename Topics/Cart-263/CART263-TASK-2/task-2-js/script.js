@@ -10,13 +10,11 @@ function setup() {
     /***OUTPUT: 
      * 
      */
-    // Select all elements with the tag name 'p' (paragraph)
-    const paragraphs = document.querySelectorAll('p');
 
-    // 'paragraphs' is now a NodeList. You can iterate over it:
+    const paragraphs = document.querySelectorAll('p');
     paragraphs.forEach(p => {
-        console.log(p.textContent); // Log the text content of each paragraph
-        p.style.color = 'blue';     // Change the text color of each paragraph
+        console.log(p.textContent);
+        p.style.color = 'blue';
     });
 
 
@@ -69,10 +67,10 @@ function setup() {
      * 
      */
     let h2Elements = document.querySelectorAll("h2");
-    console.log(h2Elements); // 5A: all h2 elements
-    console.log(h2Elements.length); // 5B: length of the list in 5A
+    console.log(h2Elements);
+    console.log(h2Elements.length);
     if (h2Elements.length > 0) {
-        console.log(h2Elements[0].textContent); // 5C: text content of the first element in the list from 5A
+        console.log(h2Elements[0].textContent);
     }
 
 
@@ -114,22 +112,22 @@ function setup() {
         contentContainers[1].style.backgroundColor = "purple"; // Second element
     }
     if (contentContainers.length > 2) {
-        contentContainers[2].style.backgroundColor = "purple"; // Second element
+        contentContainers[2].style.backgroundColor = "purple"; // Third element
     }
     if (contentContainers.length > 3) {
-        contentContainers[3].style.backgroundColor = "purple"; // Second element
+        contentContainers[3].style.backgroundColor = "purple"; // Fourth element
     }
     if (contentContainers.length > 4) {
-        contentContainers[4].style.backgroundColor = "purple"; // Second element
+        contentContainers[4].style.backgroundColor = "purple"; // Fifth element
     }
     if (contentContainers.length > 5) {
-        contentContainers[5].style.backgroundColor = "purple"; // Second element
+        contentContainers[5].style.backgroundColor = "purple"; // Sixth element
     }
     if (contentContainers.length > 6) {
-        contentContainers[6].style.backgroundColor = "purple"; // Second element
+        contentContainers[6].style.backgroundColor = "purple"; // Seventh element
     }
     if (contentContainers.length > 7) {
-        contentContainers[7].style.backgroundColor = "purple"; // Second element
+        contentContainers[7].style.backgroundColor = "purple"; // Eigth element
     }
     console.log(contentContainers);
 
@@ -260,16 +258,16 @@ function setup() {
         for (let col = 0; col < 10; col++) {
             let returnedDiv = customNewBoxCreate(newGrid);
             returnedDiv.style.position = "absolute";
-            returnedDiv.style.left = (col * 50) + "px"; // Assuming each box is 50px wide
-            returnedDiv.style.top = (row * 50) + "px";  // Assuming each box is 50px tall
+            returnedDiv.style.left = (col * 50) + "px";
+            returnedDiv.style.top = (row * 50) + "px";
 
-            // BONUS I: Set background color based on row number
+
             if (row % 2 === 0) {
                 returnedDiv.style.backgroundColor = "white";
-                returnedDiv.textContent = "EVEN"; // BONUS II: Set text content
+                returnedDiv.textContent = "EVEN";
             } else {
                 returnedDiv.style.backgroundColor = "purple";
-                returnedDiv.textContent = "ODD"; // BONUS II: Set text content
+                returnedDiv.textContent = "ODD";
             }
         }
     }
